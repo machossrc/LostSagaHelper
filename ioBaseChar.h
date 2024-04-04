@@ -12,6 +12,10 @@ public:
 	int m_iClassLevel;
 	ioHashString m_szName; //16 byte
 	ioHashString m_szViewName;
+
+	DWORD m_dwNPCIndex;
+	DWORD m_dwUserIndex;
+
 	int m_iCharState;
 	int m_iPreCharState;
 	int m_iNextCharState;

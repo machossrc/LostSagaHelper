@@ -67,10 +67,13 @@ void GameManager::GameProcess()
 					cout << "ClassLevel : " << pChar->m_iClassLevel << endl;
 					cout << "State : " << pChar->GetState() << endl;
 					cout << "Name : " << pChar->GetPublicID().c_str() << endl;
+					
+					cout << "SelectCharArray : " << pChar->m_iSelectCharArray << endl;
 
+					cout << "SlotIndexPtr : " << &pChar->m_CharInfo.m_iSlotIndex << endl;
+					cout << "SlotIndex : " << pChar->m_CharInfo.m_iSlotIndex << endl;
 
-					//cout << "ClassTypeAddr : " << &(pChar->m_CharInfo.m_class_type) << endl;
-					cout << "ClassTypeAddr : " << pChar->m_CharInfo.m_class_type.GetReal() << endl;
+					cout << "Value : " << pChar->m_CharInfo.m_class_type << endl;
 				}
 			}
 		}

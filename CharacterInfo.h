@@ -8,64 +8,6 @@ typedef struct tagAccessoryEquipInfo
 	CEncrypt<int> m_iCompoundCode;
 	CEncrypt<int> m_iCompoundValue;
 
-	void Init()
-	{
-		m_iAccessoryIdx = 0;
-		m_iAccessoryCode = 0;
-		m_iRandomNumber = 0;
-		m_iCompoundCode = 0;
-		m_iCompoundValue = 0;
-	}
-
-	tagAccessoryEquipInfo()
-	{
-		Init();
-	}
-
-	tagAccessoryEquipInfo(const tagAccessoryEquipInfo& rhs)
-	{
-		m_iAccessoryIdx = rhs.m_iAccessoryIdx;
-		m_iAccessoryCode = rhs.m_iAccessoryCode;
-		m_iRandomNumber = rhs.m_iRandomNumber;
-		m_iCompoundCode = rhs.m_iCompoundCode;
-		m_iCompoundValue = rhs.m_iCompoundValue;
-	}
-
-	bool operator=(const tagAccessoryEquipInfo& rhs)
-	{
-		m_iAccessoryIdx = rhs.m_iAccessoryIdx;
-		m_iAccessoryCode = rhs.m_iAccessoryCode;
-		m_iRandomNumber = rhs.m_iRandomNumber;
-		m_iCompoundCode = rhs.m_iCompoundCode;
-		m_iCompoundValue = rhs.m_iCompoundValue;
-
-		return true;
-	}
-
-	bool operator==(const tagAccessoryEquipInfo& rhs) const
-	{
-		if (m_iAccessoryIdx != rhs.m_iAccessoryIdx)
-			return false;
-		if (m_iAccessoryCode != rhs.m_iAccessoryCode)
-			return false;
-		if (m_iRandomNumber != rhs.m_iRandomNumber)
-			return false;
-		if (m_iCompoundCode != rhs.m_iCompoundCode)
-			return false;
-		if (m_iCompoundValue != rhs.m_iCompoundValue)
-			return false;
-
-		return true;
-	}
-
-	bool operator!=(const tagAccessoryEquipInfo& rhs) const
-	{
-		if (*this == rhs)
-			return false;
-
-		return true;
-	}
-
 }AccessoryEquipInfo;
 
 typedef struct tagCostumeEquipInfo
@@ -74,49 +16,6 @@ typedef struct tagCostumeEquipInfo
 	int m_CostumeCode;
 	DWORD m_Costume_Male_Custom;
 	DWORD m_Costume_Female_Custom;
-
-	void Init()
-	{
-		m_CostumeIdx = 0;
-		m_CostumeCode = 0;
-		m_Costume_Male_Custom = 0;
-		m_Costume_Female_Custom = 0;
-	}
-
-	tagCostumeEquipInfo()
-	{
-		Init();
-	}
-
-	tagCostumeEquipInfo(const tagCostumeEquipInfo& rhs)
-	{
-		m_CostumeIdx = rhs.m_CostumeIdx;
-		m_CostumeCode = rhs.m_CostumeCode;
-		m_Costume_Male_Custom = rhs.m_Costume_Male_Custom;
-		m_Costume_Female_Custom = rhs.m_Costume_Female_Custom;
-	}
-
-	bool operator==(const tagCostumeEquipInfo& rhs) const
-	{
-		if (m_CostumeIdx != rhs.m_CostumeIdx)
-			return false;
-		if (m_CostumeCode != rhs.m_CostumeCode)
-			return false;
-		if (m_Costume_Male_Custom != rhs.m_Costume_Male_Custom)
-			return false;
-		if (m_Costume_Female_Custom != rhs.m_Costume_Female_Custom)
-			return false;
-
-		return true;
-	}
-
-	bool operator!=(const tagCostumeEquipInfo& rhs) const
-	{
-		if (*this == rhs)
-			return false;
-
-		return true;
-	}
 
 }CostumeEquipInfo;
 
