@@ -11,6 +11,16 @@ void OnHook()
 
 void OnHelper()
 {
+    cout << "Game Memory Initialize ... ";
+
+    if (!g_GameMgr.MemoryInit())
+    {
+        cout << "Error" << endl;
+        return;
+    }
+
+    cout << "Successed" << endl;
+
     g_GameMgr.GameProcess();
 }
 

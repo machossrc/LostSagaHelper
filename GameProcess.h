@@ -4,7 +4,11 @@ class ioBaseChar;
 
 class GameManager : public Singleton<GameManager>
 {
+private:
+	DWORD m_dwApp;
 public:
+	bool MemoryInit();
+
 	void GameProcess();
 
 public:
