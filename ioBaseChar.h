@@ -1,12 +1,44 @@
 #pragma once
+#include "ioHashString.h"
+#include "EncryptValue.h"
+#include "CharacterInfo.h"
+
 class ioBaseChar
 {
-private:
-	char Buffer1[100]; //필요 없는 구조체의 크기 만큼 Buffer 의 크기를 증가 시킨다.
+public:
+	char Buffer1[728];
+	DWORD m_dwIndex;
+	int m_iLevel;
+	int m_iClassLevel;
+	ioHashString m_szName; //16 byte
+	ioHashString m_szViewName;
+	int m_iCharState;
+	int m_iPreCharState;
+	int m_iNextCharState;
 
-	DWORD aa; //필요한 정보를 가져오고
+	char Buffer2[4];
 
-	char Buffer2[24]; //버퍼를 증가 시킨다
+	int m_iLandType;
+
+	int m_iRaceType;
+
+	bool m_bMale;
+
+	int m_iSelectCharArray;
+
+	char Buffer3[24];
+
+	bool m_bJumpAttackEnable;
+
+	char Buffer4[20];
+
+	//CHARACTER
+	CHARACTER m_CharInfo;
+
+public:
+
+	int GetState(); //모션
+	ioHashString GetPublicID();
 
 public:
 	ioBaseChar();

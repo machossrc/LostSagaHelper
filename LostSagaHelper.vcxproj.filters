@@ -48,6 +48,12 @@
     <ClCompile Include="MemoryManager.cpp">
       <Filter>Utils\Memory</Filter>
     </ClCompile>
+    <ClCompile Include="ioHashString.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ccddaabb.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -70,6 +76,18 @@
     </ClInclude>
     <ClInclude Include="MemoryManager.h">
       <Filter>Utils\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="ioHashString.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterInfo.h">
+      <Filter>Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ccddaabb.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="EncryptValue.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
