@@ -1,4 +1,5 @@
 ﻿#include "StdAfx.h"
+#include "GameProcess.h"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ void OnHook()
 
 void OnHelper()
 {
-
+    g_GameMgr.GameProcess();
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
