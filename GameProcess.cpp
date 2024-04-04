@@ -3,13 +3,11 @@
 #include "ioBaseChar.h"
 #include "Offset.h"
 
-GameManager* GameManager::sg_Instance = NULL;
+template<> GameManager* Singleton<GameManager>::ms_Singleton = 0;
 
-GameManager& GameManager::GetInstance()
+GameManager& GameManager::GetSingleton()
 {
-	if (sg_Instance == NULL)
-		sg_Instance = new GameManager;
-	return *sg_Instance;
+	return Singleton<GameManager>::GetSingleton();
 }
 
 GameManager::GameManager()

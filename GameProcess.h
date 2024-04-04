@@ -1,8 +1,8 @@
 #pragma once
-
+#include "Singleton.h"
 class ioBaseChar;
 
-class GameManager
+class GameManager : public Singleton<GameManager>
 {
 public:
 	void GameProcess();
@@ -10,13 +10,11 @@ public:
 public:
 	ioBaseChar* GetBaseChar(int iOffset);
 
-private:
-	static GameManager* sg_Instance;
 public:
-	static GameManager& GetInstance();
+	static GameManager& GetSingleton();
 public:
 	GameManager();
 	~GameManager();
 };
 
-#define g_GameMgr GameManager::GetInstance()
+#define g_GameMgr GameManager::GetSingleton()

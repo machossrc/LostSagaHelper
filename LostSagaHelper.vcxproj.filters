@@ -25,6 +25,9 @@
     <Filter Include="Game\Hero">
       <UniqueIdentifier>{6e67c974-fabe-41a4-8b82-1ac68cb9794d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{b6793762-1b22-401e-bd13-613592b09ff6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -35,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="ioBaseChar.cpp">
       <Filter>Game\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +55,12 @@
     </ClInclude>
     <ClInclude Include="ioBaseChar.h">
       <Filter>Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
