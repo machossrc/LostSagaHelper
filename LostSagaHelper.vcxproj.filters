@@ -28,6 +28,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{b6793762-1b22-401e-bd13-613592b09ff6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils\Memory">
+      <UniqueIdentifier>{d999c732-3ca1-45cc-8f01-96bb5f440466}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -41,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryManager.cpp">
+      <Filter>Utils\Memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryManager.h">
+      <Filter>Utils\Memory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -95,6 +95,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>D:\lib\capstone-5.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -102,6 +103,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>capstone.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\lib\capstone-5.0.1\build\windows-x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,11 +145,13 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="GameProcess.cpp" />
     <ClCompile Include="ioBaseChar.cpp" />
+    <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameProcess.h" />
     <ClInclude Include="ioBaseChar.h" />
+    <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="Offset.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="StdAfx.h" />
