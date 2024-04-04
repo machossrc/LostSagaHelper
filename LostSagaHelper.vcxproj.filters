@@ -13,15 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{c10de0db-5026-4926-a311-7870c1aade2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Offset">
+      <UniqueIdentifier>{36b79841-b5bd-4431-a9f5-72f69980b7ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Data">
+      <UniqueIdentifier>{f12baafe-26b6-4577-ae49-2aea15401eff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Hero">
+      <UniqueIdentifier>{6e67c974-fabe-41a4-8b82-1ac68cb9794d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="GameProcess.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ioBaseChar.cpp">
+      <Filter>Game\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Offset.h">
+      <Filter>Offset</Filter>
+    </ClInclude>
+    <ClInclude Include="GameProcess.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ioBaseChar.h">
+      <Filter>Game\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

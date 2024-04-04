@@ -140,8 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="GameProcess.cpp" />
+    <ClCompile Include="ioBaseChar.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameProcess.h" />
+    <ClInclude Include="ioBaseChar.h" />
+    <ClInclude Include="Offset.h" />
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

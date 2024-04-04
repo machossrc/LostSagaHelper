@@ -2,6 +2,11 @@
 
 using namespace std;
 
+void OnHook()
+{
+
+}
+
 void OnHelper()
 {
 
