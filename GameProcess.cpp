@@ -62,23 +62,13 @@ void GameManager::GameProcess()
 				ioBaseChar* pChar = GetBaseChar(i * 0x4);
 				if (pChar)
 				{
-					//cout << "Index : " << pChar->m_dwIndex << endl;
-					//cout << "Grade : " << pChar->m_iLevel << endl;
-					//cout << "ClassLevel : " << pChar->m_iClassLevel << endl;
-					//cout << "State : " << pChar->GetState() << endl;
+					if (pChar->IsOwnerChar())
+					{
+						cout << "Name : " << pChar->GetPublicID().c_str() << endl;
+						cout << "ClassType : " << pChar->m_CharInfo.m_class_type << endl;
 
-
-					cout << "Name : " << pChar->GetPublicID().c_str() << endl;
-					cout << "ClassType : " << pChar->m_CharInfo.m_class_type << endl;
-
-
-					D3DXVECTOR3 k = pChar->GetPosition();
-
-					char szBuf[256];
-
-
-					sprintf(szBuf,"x : %f, y : %f, z : %f",k.x, k.y, k.z);
-					cout << szBuf << endl;
+						cout << "Skill : " << pChar->GetSkillGauge(0) << endl;
+					}
 				}
 			}
 		}
@@ -89,6 +79,7 @@ void GameManager::GameProcess()
 ioBaseChar* GameManager::GetBaseChar(int iOffset)
 {
 	DWORD c_C = NULL;
+
 	if (IsBadReadPtr((PDWORD)PlayerBase, DM_PROMPT) == NULL)
 	{
 		c_C = *(PDWORD)((DWORD)(PlayerBase)) + OFS_USERBASE_1;
@@ -115,6 +106,20 @@ ioBaseChar* GameManager::GetBaseChar(int iOffset)
 					}
 				}
 			}
+		}
+	}
+
+	return nullptr;
+}
+
+ioBaseChar* GameManager::GetOwnerChar()
+{
+	for (int i = 0; i < 32; i++)
+	{
+		ioBaseChar* pChar = GetBaseChar(i * 0x4);
+		if (pChar->IsOwnerChar())
+		{
+			return pChar;
 		}
 	}
 	return nullptr;

@@ -13,7 +13,7 @@ public:
 
 public:
 	ioBaseChar* GetBaseChar(int iOffset);
-
+	ioBaseChar* GetOwnerChar();
 public:
 	static GameManager& GetSingleton();
 public:
