@@ -38,9 +38,17 @@ bool ioBaseChar::IsOwnerChar()
 
 float ioBaseChar::GetSkillGauge(int iState)
 {
-	if (iState > 9)
+	float fSkillGauge = 0.f;
+	if (iState > 8)
 	{
-		return NULL;
+		return fSkillGauge;
 	}
-	return m_pEquipSlot->m_EquipItemSlot[iState]->m_fCurSkillGauge;
+
+	ioItem* pItem = m_pEquipSlot->m_EquipItemSlot[iState];
+	if (pItem)
+	{
+		fSkillGauge = pItem->m_fCurSkillGauge;
+	}
+
+	return fSkillGauge;
 }
