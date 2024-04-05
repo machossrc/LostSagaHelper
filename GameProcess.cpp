@@ -55,22 +55,36 @@ void GameManager::GameProcess()
 {
 	while (true)
 	{
-		if (GetAsyncKeyState(VK_INSERT) & 1)
-		{
-			//ioBaseChar* pOwner = GetOwnerChar();
-			//if (pOwner)
-			//{
-			//	//cout << "IDX : " << pOwner->m_dwIndex << endl;
-			//	cout << "Name : " << pOwner->GetPublicID().c_str() << endl;
-			//	cout << "SkillGauge Weapon : " << pOwner->GetSkillGauge(0) << endl;
-			//}
+		//if (GetAsyncKeyState(VK_INSERT) & 1)
+		//{
+		//	ioBaseChar* pOwner = GetOwnerChar();
+		//	if (pOwner)
+		//	{
+		//		//cout << "IDX : " << pOwner->m_dwIndex << endl;
+		//		cout << "Name : " << pOwner->GetPublicID().c_str() << endl;
+		//		cout << "SkillGauge Weapon : " << pOwner->GetSkillGauge(0) << endl;
+		//	}
 
-			cout << "UserCnt : " << GetBaseCharSize() << endl;
+		//	cout << "UserCnt : " << GetBaseCharSize() << endl;
+
+		//	
+		//}
+
+		for (int i = 0; i < 32; i++)
+		{
+			ioBaseChar* pChar = GetBaseChar(i * 0x4);
+			if (!pChar) //pChar 가 없다면, 마지막 번호이므로 종료
+			{
+				break;
+			}
+
+			if (pChar->GetState() == 7) //스킬을 사용중이다
+			{
+				cout << pChar->GetPublicID().c_str() << " 님이 스킬을 사용함." << endl;
+			}
 		}
 
-
-
-		Sleep(100);
+		Sleep(10);
 	}
 }
 
