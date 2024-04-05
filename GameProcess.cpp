@@ -60,6 +60,7 @@ void GameManager::GameProcess()
 			ioBaseChar* pOwner = GetOwnerChar();
 			if (pOwner)
 			{
+				cout << "IDX : " << pOwner->m_dwIndex << endl;
 				cout << "Name : " << pOwner->GetPublicID().c_str() << endl;
 				cout << "SkillGauge Weapon : " << pOwner->GetSkillGauge(0) << endl;
 			}
