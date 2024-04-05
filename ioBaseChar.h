@@ -111,7 +111,7 @@ public:
 
 	D3DXVECTOR3 GetPosition();
 
-	bool IsOwnerChar();
+	bool IsOwnerChar() const;
 
 	float GetSkillGauge(int iState);
 

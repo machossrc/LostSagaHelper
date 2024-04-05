@@ -31,7 +31,7 @@ D3DXVECTOR3 ioBaseChar::GetPosition()
 	return k;
 }
 
-bool ioBaseChar::IsOwnerChar()
+bool ioBaseChar::IsOwnerChar() const
 {
 	return m_bOwnerChar;
 }
