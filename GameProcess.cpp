@@ -81,6 +81,13 @@ void GameManager::GameProcess()
 			if (pChar->GetState() == 7) //스킬을 사용중이다
 			{
 				cout << pChar->GetPublicID().c_str() << " 님이 스킬을 사용함." << endl;
+				ioBaseChar* pOwner = GetOwnerChar();
+				if (pOwner)
+				{
+					char szBuf[MAX_PATH];
+					sprintf(szBuf, "내 스킬 게이지 : %f, %f, %f, %f", pOwner->GetSkillGauge(0), pOwner->GetSkillGauge(1), pOwner->GetSkillGauge(2), pOwner->GetSkillGauge(3));
+					cout << szBuf << endl;
+				}
 			}
 		}
 
