@@ -62,18 +62,23 @@ void GameManager::GameProcess()
 				ioBaseChar* pChar = GetBaseChar(i * 0x4);
 				if (pChar)
 				{
-					cout << "Index : " << pChar->m_dwIndex << endl;
-					cout << "Grade : " << pChar->m_iLevel << endl;
-					cout << "ClassLevel : " << pChar->m_iClassLevel << endl;
-					cout << "State : " << pChar->GetState() << endl;
+					//cout << "Index : " << pChar->m_dwIndex << endl;
+					//cout << "Grade : " << pChar->m_iLevel << endl;
+					//cout << "ClassLevel : " << pChar->m_iClassLevel << endl;
+					//cout << "State : " << pChar->GetState() << endl;
+
+
 					cout << "Name : " << pChar->GetPublicID().c_str() << endl;
-					
-					cout << "SelectCharArray : " << pChar->m_iSelectCharArray << endl;
+					cout << "ClassType : " << pChar->m_CharInfo.m_class_type << endl;
 
-					cout << "SlotIndexPtr : " << &pChar->m_CharInfo.m_iSlotIndex << endl;
-					cout << "SlotIndex : " << pChar->m_CharInfo.m_iSlotIndex << endl;
 
-					cout << "Value : " << pChar->m_CharInfo.m_class_type << endl;
+					D3DXVECTOR3 k = pChar->GetPosition();
+
+					char szBuf[256];
+
+
+					sprintf(szBuf,"x : %f, y : %f, z : %f",k.x, k.y, k.z);
+					cout << szBuf << endl;
 				}
 			}
 		}

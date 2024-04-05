@@ -3,10 +3,14 @@
 #include "EncryptValue.h"
 #include "CharacterInfo.h"
 
+//2432
 class ioBaseChar
 {
 public:
-	char Buffer1[728];
+	char Buffer0[464];
+	//좌표읽기
+	DWORD m_pPosition;
+	char Buffer1[260];
 	DWORD m_dwIndex;
 	int m_iLevel;
 	int m_iClassLevel;
@@ -16,7 +20,7 @@ public:
 	DWORD m_dwNPCIndex;
 	DWORD m_dwUserIndex;
 
-	int m_iCharState;
+	int m_iCharState; //0x308 776
 	int m_iPreCharState;
 	int m_iNextCharState;
 
@@ -39,10 +43,19 @@ public:
 	//CHARACTER
 	CHARACTER m_CharInfo;
 
+	char Buffer5[40];
+
+
+	D3DXQUATERNION m_qtTargetRot;
+	D3DXVECTOR3	   m_vMoveDir;
+	D3DXVECTOR3	   m_vInputDir;
+
 public:
 
 	int GetState(); //모션
 	ioHashString GetPublicID();
+
+	D3DXVECTOR3 GetPosition();
 
 public:
 	ioBaseChar();
