@@ -62,7 +62,6 @@ void GameManager::GameProcess()
 			{
 				cout << "Name : " << pOwner->GetPublicID().c_str() << endl;
 				cout << "SkillGauge Weapon : " << pOwner->GetSkillGauge(0) << endl;
-				//ddddddddddddd
 			}
 		}
 		Sleep(100);
