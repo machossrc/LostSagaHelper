@@ -57,19 +57,11 @@ void GameManager::GameProcess()
 	{
 		if (GetAsyncKeyState(VK_INSERT) & 1)
 		{
-			for (int i = 0; i < 32; i++)
+			ioBaseChar* pOwner = GetOwnerChar();
+			if (pOwner)
 			{
-				ioBaseChar* pChar = GetBaseChar(i * 0x4);
-				if (pChar)
-				{
-					if (pChar->IsOwnerChar())
-					{
-						cout << "Name : " << pChar->GetPublicID().c_str() << endl;
-						cout << "ClassType : " << pChar->m_CharInfo.m_class_type << endl;
-
-						cout << "Skill : " << pChar->GetSkillGauge(0) << endl;
-					}
-				}
+				cout << "Name : " << pOwner->GetPublicID().c_str() << endl;
+				cout << "SkillGauge Weapon : " << pOwner->GetSkillGauge(0) << endl;
 			}
 		}
 		Sleep(100);

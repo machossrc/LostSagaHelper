@@ -103,8 +103,6 @@ public:
 	int m_iLastAttackerTeam;
 	DWORD m_dwLastAttackerItemCode;
 
-
-
 public:
 
 	int GetState(); //¸ð¼Ç
