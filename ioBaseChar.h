@@ -2,6 +2,7 @@
 #include "ioHashString.h"
 #include "EncryptValue.h"
 #include "CharacterInfo.h"
+#include "ioPlayStage.h"
 #include <map>
 #include <vector>
 
@@ -77,7 +78,7 @@ public:
 	bool m_bJumpAttackEnable;
 
 	//
-	void* m_pCreator; //ioPlayStage
+	ioPlayStage* m_pCreator; //ioPlayStage
 	ioEquipSlot* m_pEquipSlot; //ioEquipSlot 여기서 스킬
 
 	char Buffer4[12];

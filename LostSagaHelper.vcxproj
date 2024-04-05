@@ -151,6 +151,7 @@
     <ClCompile Include="GameProcess.cpp" />
     <ClCompile Include="ioBaseChar.cpp" />
     <ClCompile Include="ioHashString.cpp" />
+    <ClCompile Include="ioPlayStage.cpp" />
     <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="GameProcess.h" />
     <ClInclude Include="ioBaseChar.h" />
     <ClInclude Include="ioHashString.h" />
+    <ClInclude Include="ioPlayStage.h" />
     <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="Offset.h" />
     <ClInclude Include="Singleton.h" />

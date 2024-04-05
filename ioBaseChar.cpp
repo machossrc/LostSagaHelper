@@ -44,7 +44,7 @@ float ioBaseChar::GetSkillGauge(int iState)
 		return fSkillGauge;
 	}
 
-	ioItem* pItem = m_pEquipSlot->m_EquipItemSlot[iState];
+	const ioItem* pItem = m_pEquipSlot->m_EquipItemSlot[iState];
 	if (pItem)
 	{
 		fSkillGauge = pItem->m_fCurSkillGauge;

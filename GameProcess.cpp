@@ -57,14 +57,19 @@ void GameManager::GameProcess()
 	{
 		if (GetAsyncKeyState(VK_INSERT) & 1)
 		{
-			ioBaseChar* pOwner = GetOwnerChar();
-			if (pOwner)
-			{
-				//cout << "IDX : " << pOwner->m_dwIndex << endl;
-				cout << "Name : " << pOwner->GetPublicID().c_str() << endl;
-				cout << "SkillGauge Weapon : " << pOwner->GetSkillGauge(0) << endl;
-			}
+			//ioBaseChar* pOwner = GetOwnerChar();
+			//if (pOwner)
+			//{
+			//	//cout << "IDX : " << pOwner->m_dwIndex << endl;
+			//	cout << "Name : " << pOwner->GetPublicID().c_str() << endl;
+			//	cout << "SkillGauge Weapon : " << pOwner->GetSkillGauge(0) << endl;
+			//}
+
+			cout << "UserCnt : " << GetBaseCharSize() << endl;
 		}
+
+
+
 		Sleep(100);
 	}
 }
@@ -116,4 +121,27 @@ ioBaseChar* GameManager::GetOwnerChar()
 		}
 	}
 	return nullptr;
+}
+
+int GameManager::GetBaseCharSize()
+{
+	int iCnt = 0;
+
+	ioBaseChar* pOwner = GetOwnerChar();
+	if (pOwner)
+	{
+		ioPlayStage* pStage = pOwner->m_pCreator;
+		if (pStage)
+		{
+			BaseCharList::iterator iter = pStage->m_BaseCharList.begin();
+
+			for (; iter != pStage->m_BaseCharList.end(); ++iter)
+			{
+				iCnt++;
+			}
+		}
+
+	}
+
+	return iCnt;
 }
