@@ -87,6 +87,7 @@ void GameManager::GameProcess()
 					char szBuf[MAX_PATH];
 					sprintf(szBuf, "내 스킬 게이지 : %f, %f, %f, %f", pOwner->GetSkillGauge(0), pOwner->GetSkillGauge(1), pOwner->GetSkillGauge(2), pOwner->GetSkillGauge(3));
 					cout << szBuf << endl;
+					//CHECK
 				}
 			}
 		}
