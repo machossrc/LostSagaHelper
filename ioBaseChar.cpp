@@ -22,6 +22,20 @@ ioHashString ioBaseChar::GetPublicID()
 	return m_szName;
 }
 
+float ioBaseChar::GetSkillByIndex(int iIndex)
+{
+	DWORD Buf = g_Memory.RPM<DWORD>((DWORD)&m_pEquipSlot);
+	Buf = g_Memory.RPM<DWORD>(Buf + iIndex * 0x4);
+	return g_Memory.RPM<float>(Buf + 0x41C);
+}
+
+float ioBaseChar::GetMaxSkillByIndex(int iIndex)
+{
+	DWORD Buf = g_Memory.RPM<DWORD>((DWORD)&m_pEquipSlot);
+	Buf = g_Memory.RPM<DWORD>(Buf + iIndex * 0x4);
+	return g_Memory.RPM<float>(Buf + 0x41C - sizeof(CEncrypt<float>));
+}
+
 D3DXVECTOR3 ioBaseChar::GetPosition()
 {
 	DWORD Buf = g_Memory.RPM<DWORD>((DWORD) & m_pPosition);
@@ -34,21 +48,4 @@ D3DXVECTOR3 ioBaseChar::GetPosition()
 bool ioBaseChar::IsOwnerChar() const
 {
 	return m_bOwnerChar;
-}
-
-float ioBaseChar::GetSkillGauge(int iState)
-{
-	float fSkillGauge = 0.f;
-	if (iState > 8)
-	{
-		return fSkillGauge;
-	}
-
-	const ioItem* pItem = m_pEquipSlot->m_EquipItemSlot[iState];
-	if (pItem)
-	{
-		fSkillGauge = pItem->m_fCurSkillGauge;
-	}
-
-	return fSkillGauge;
 }

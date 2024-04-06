@@ -6,15 +6,36 @@
 #include <map>
 #include <vector>
 
+enum EquipSlot
+{
+	ES_WEAPON,
+	ES_ARMOR,
+	ES_HELMET,
+	ES_CLOAK,
+	ES_OBJECT,
+	ES_WEAR,
+	ES_RING,
+	ES_NECKLACE,
+	ES_BRACELET,
+	MAX_EQUIP_SLOT,
+	ES_UNKNOWN
+};
+
+//CEncrypt 의 경우 & 의 주소 - 8 이 실제 값이다
+
 class ioItem //1120전체크기
 {
 public:
 	char Buffer1[45];
 
+	char BufferOver[4]; //24 years ADD
+
 	int		m_iItemGroupIndex;
 	DWORD	m_dwItemCode;
 
 	char Buffer2[528];
+
+	char BufferOverw[24]; //24 years ADD
 
 	ioHashString m_OwnerName;
 
@@ -26,8 +47,10 @@ public:
 	CEncrypt<float> m_fChangeSkillExtendGauge;
 
 	char Buffer3[76];
+	char BufferOver3[8];
 
-	int m_SkillGaugeType;
+	char Buff[52];
+
 	CEncrypt<bool> m_bHasSkillGauge;
 	CEncrypt<bool> m_bUpdateEnableSkillGauge;
 	CEncrypt<float> m_fMaxSkillGauge;
@@ -79,7 +102,8 @@ public:
 
 	//
 	ioPlayStage* m_pCreator; //ioPlayStage
-	ioEquipSlot* m_pEquipSlot; //ioEquipSlot 여기서 스킬
+	//ioEquipSlot* m_pEquipSlot; //ioEquipSlot 여기서 스킬
+	void* m_pEquipSlot;
 
 	char Buffer4[12];
 
@@ -109,11 +133,13 @@ public:
 	int GetState(); //모션
 	ioHashString GetPublicID();
 
+	float GetSkillByIndex(int iIndex);
+	float GetMaxSkillByIndex(int iIndex);
 	D3DXVECTOR3 GetPosition();
 
 	bool IsOwnerChar() const;
 
-	float GetSkillGauge(int iState);
+	//float GetSkillGauge(int iState);
 
 public:
 	ioBaseChar();
