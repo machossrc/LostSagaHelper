@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "ioBaseChar.h"
 #include "MemoryManager.h"
+#include "ioSkill.h"
 
 ioBaseChar::ioBaseChar()
 {
@@ -88,6 +89,12 @@ D3DXVECTOR3 ioBaseChar::GetPosition()
 
 	D3DXVECTOR3 k(g_Memory.RPM<float>(Buf + 0x3C), g_Memory.RPM<float>(Buf + 0x40), g_Memory.RPM<float>(Buf + 0x44));
 	return k;
+}
+
+ioSkill* ioBaseChar::GetEquipedSkill(int iSkillNum)
+{
+	ioSkill*(__thiscall * GetEquipedSkill)(DWORD * pThis, unsigned int) = reinterpret_cast<ioSkill*(__thiscall*)(DWORD * pThis, unsigned int)>(0x01913ED0);
+	return GetEquipedSkill((DWORD*)this->m_pEquipSlot, iSkillNum);
 }
 
 bool ioBaseChar::IsOwnerChar() const

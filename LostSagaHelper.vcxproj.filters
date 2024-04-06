@@ -54,10 +54,13 @@
     <ClCompile Include="ccddaabb.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="ioPlayStage.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ioMyInfo.cpp">
+      <Filter>Game\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ioSkill.cpp">
+      <Filter>Game\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ioPlayStage.cpp">
       <Filter>Game\Data</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,10 +98,13 @@
     <ClInclude Include="EncryptValue.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="ioPlayStage.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ioMyInfo.h">
+      <Filter>Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ioSkill.h">
+      <Filter>Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ioPlayStage.h">
       <Filter>Game\Data</Filter>
     </ClInclude>
   </ItemGroup>

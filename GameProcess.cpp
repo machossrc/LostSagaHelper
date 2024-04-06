@@ -3,6 +3,7 @@
 #include "MemoryManager.h"
 #include "ioBaseChar.h"
 #include "ioMyInfo.h"
+#include "ioSkill.h"
 #include "Offset.h"
 
 using namespace std;
@@ -58,18 +59,48 @@ void GameManager::GameProcess()
 
 	while (true)
 	{
-		cout << "바꿀 Char Index 을 입력하세요 : ";
+		/*cout << "바꿀 Char Index 을 입력하세요 : ";
 		int iState = 0;
-		cin >> iState;
+		cin >> iState;*/
 
-		ioBaseChar* pOwner = GetOwnerChar();
+		/*ioBaseChar* pOwner = GetOwnerChar();
 		if (pOwner)
 		{
 			if (g_MyInfo.GetCharCount() >= iState)
 			{
 				pOwner->SendChangeChar(iState);
 			}
+		}*/
+
+		if (GetAsyncKeyState(VK_INSERT) & 1)
+		{
+			ioBaseChar* pOwner = GetOwnerChar();
+			if (pOwner)
+			{
+				ioSkill* pSkill = pOwner->GetEquipedSkill(0);
+				if (pSkill)
+				{
+					printf("SkillPer : %p\n", pSkill);
+					printf("GroupName : %s\n", pSkill->m_GroupName.c_str());
+					printf("SkillName : %s\n", pSkill->m_Name.c_str());
+				}
+
+			}
 		}
+
+		/*for (int i = 0; i < 32; i++)
+		{
+			ioBaseChar* pChar = GetBaseChar(i * 0x4);
+			if (pChar && !pChar->IsOwnerChar() && pChar->GetState() == 7)
+			{
+				ioBaseChar* pOwner = GetOwnerChar();
+				if (pOwner)
+				{
+					pOwner->SendChangeChar(1);
+					Sleep(5000);
+				}
+			}
+		}*/
 
 		//if (InitMyInventoryData == false)
 		//{
@@ -112,7 +143,7 @@ void GameManager::GameProcess()
 		//	}
 		//}
 
-		Sleep(100);
+		Sleep(10);
 	}
 }
 

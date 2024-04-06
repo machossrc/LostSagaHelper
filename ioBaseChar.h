@@ -6,6 +6,8 @@
 #include <map>
 #include <vector>
 
+class ioSkill;
+
 enum EquipSlot
 {
 	ES_WEAPON,
@@ -142,6 +144,8 @@ public:
 	float GetCurSkillByIndex(int iIndex);
 	float GetMaxSkillByIndex(int iIndex);
 	D3DXVECTOR3 GetPosition();
+
+	ioSkill* GetEquipedSkill(int iSkillNum);
 
 	bool IsOwnerChar() const;
 
