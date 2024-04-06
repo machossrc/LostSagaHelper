@@ -68,10 +68,16 @@ public:
 };
 
 //2432
-class ioBaseChar
+class ioBaseChar //5772
 {
 public:
-	char Buffer0[464];
+
+	char FirstBuffer[184];
+	int m_iTeam;
+	char Buffer0[276];
+
+
+
 	//ÁÂÇ¥ÀÐ±â
 	DWORD m_pPosition;
 	char Buffer1[260];
@@ -148,6 +154,8 @@ public:
 	ioSkill* GetEquipedSkill(int iSkillNum);
 
 	bool IsOwnerChar() const;
+
+	int GetTeam() const;
 
 	//float GetSkillGauge(int iState);
 

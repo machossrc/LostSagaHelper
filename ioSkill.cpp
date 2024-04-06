@@ -14,14 +14,7 @@ bool ioSkill::IsSkillStart()
 
 DWORD ioSkill::GetSkillWaitTime()
 {
-	if (m_dwPreDelayStartTime == 0)
-	{
-		return 3000;
-	}
-	else
-	{
-		return m_dwPreDelayStartTime;
-	}
+	return m_dwPreDelayTime;
 }
 
 bool ioSkill::IsTimeGateWeaponSkill()

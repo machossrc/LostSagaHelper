@@ -101,13 +101,13 @@ public:
 
 	ioHashString m_PreDelayAnimation; //여긴 OK
 	DWORD m_dwPreDelayTime;
-	char szUnknownBuffer[4]; //2024 추가
+	DWORD m_dwAnimationEndDelay; //추가
 
 	ioHashString m_PreDelayOwnerEffect;
 	ioHashString m_PreDelayOtherEffect;
 
 	// Down
-	ioHashString m_DownSkillMotionName; //여기 잘 못 가져옴
+	ioHashString m_DownSkillMotionName;
 	float m_fDownAnimationTimeRate;
 
 	bool m_bDownPreDelayProtect;

@@ -27,6 +27,7 @@ GameManager::~GameManager()
 
 bool GameManager::MemoryInit()
 {
+
 	//DWORD dwMemoryInitTime = GetTickCount();
 	//while (true)
 	//{
@@ -59,6 +60,8 @@ void GameManager::GameProcess()
 
 	while (true)
 	{
+		Sleep(10);
+
 		/*if (GetAsyncKeyState(VK_INSERT) & 1)
 		{
 			ioBaseChar* pOwner = GetOwnerChar();
@@ -86,11 +89,16 @@ void GameManager::GameProcess()
 			}
 		}*/
 
+		ioBaseChar* pOwner = GetOwnerChar();
+		if (!pOwner)
+		{
+			continue;
+		}
 
 		for (int i = 0; i < 32; i++)
 		{
 			ioBaseChar* pChar = GetBaseChar(i * 0x4);
-			if (pChar && pChar->GetState() == 7)
+			if (pChar && pChar->GetState() == 7 && (pOwner != pChar) && (pOwner->GetTeam() != pChar->GetTeam()))
 			{
 				for (int j = 0; j < 4; j++)
 				{
@@ -99,19 +107,14 @@ void GameManager::GameProcess()
 					{
 						if (pSkill->IsTimeGateWeaponSkill())
 						{
-							ioBaseChar* pOwner = GetOwnerChar();
-							if (pOwner)
-							{
-								pOwner->SendChangeChar(1);
-								Sleep(pSkill->GetSkillWaitTime());
-							}
+							printf("티메가테 무기스킬.\n");
+							//pOwner->SendChangeChar(1);
+							Sleep(pSkill->GetSkillWaitTime());
 						}
 					}
 				}
 			}
 		}
-
-		Sleep(10);
 	}
 }
 

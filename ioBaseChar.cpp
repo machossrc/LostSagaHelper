@@ -101,3 +101,8 @@ bool ioBaseChar::IsOwnerChar() const
 {
 	return m_bOwnerChar;
 }
+
+int ioBaseChar::GetTeam() const
+{
+	return m_iTeam;
+}

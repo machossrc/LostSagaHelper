@@ -12,6 +12,8 @@ public:
 	void GameProcess();
 
 public:
+
+
 	ioBaseChar* GetBaseChar(int iOffset);
 	ioBaseChar* GetOwnerChar();
 	ioBaseChar* GetBaseChar(const char * szName);
