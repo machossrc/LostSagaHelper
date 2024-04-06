@@ -68,11 +68,14 @@ void GameManager::GameProcess()
 		ioBaseChar* pOwner = GetOwnerChar();
 		if (pOwner)
 		{
-			if (pOwner->HasSkill(EquipSlot::ES_WEAPON)) printf("Has Weapon Skill\n");
-			if (pOwner->HasSkill(EquipSlot::ES_ARMOR)) printf("Has Armor Skill\n");
-			if (pOwner->HasSkill(EquipSlot::ES_HELMET)) printf("Has Helmet Skill\n");
-			if (pOwner->HasSkill(EquipSlot::ES_CLOAK)) printf("Has Cloak Skill\n");
-
+			__try
+			{
+				if (pOwner->HasSkill(EquipSlot::ES_WEAPON)) printf("Has Weapon Skill\n");
+				if (pOwner->HasSkill(EquipSlot::ES_ARMOR)) printf("Has Armor Skill\n");
+				if (pOwner->HasSkill(EquipSlot::ES_HELMET)) printf("Has Helmet Skill\n");
+				if (pOwner->HasSkill(EquipSlot::ES_CLOAK)) printf("Has Cloak Skill\n");
+			}
+			__except (1) {}
 		}
 
 
@@ -143,7 +146,7 @@ ioBaseChar* GameManager::GetOwnerChar()
 	for (int i = 0; i < 32; i++)
 	{
 		ioBaseChar* pChar = GetBaseChar(i * 0x4);
-		if (pChar->IsOwnerChar())
+		if (pChar && pChar->IsOwnerChar())
 		{
 			return pChar;
 		}

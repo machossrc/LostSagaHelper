@@ -54,6 +54,9 @@
     <ClCompile Include="ccddaabb.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="ioPlayStage.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="EncryptValue.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ioPlayStage.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
