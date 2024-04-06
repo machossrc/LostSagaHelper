@@ -2,6 +2,7 @@
 #include "GameProcess.h"
 #include "MemoryManager.h"
 #include "ioBaseChar.h"
+#include "ioMyInfo.h"
 #include "Offset.h"
 
 using namespace std;
@@ -57,18 +58,17 @@ void GameManager::GameProcess()
 
 	while (true)
 	{
-		if (GetAsyncKeyState(VK_INSERT) & 1)
+		cout << "바꿀 Char Index 을 입력하세요 : ";
+		int iState = 0;
+		cin >> iState;
+
+		ioBaseChar* pOwner = GetOwnerChar();
+		if (pOwner)
 		{
-			InitMyInventoryData = true;
-
-			ioBaseChar* pOwner = GetOwnerChar();
-			if (pOwner)
+			if (g_MyInfo.GetCharCount() >= iState)
 			{
-				printf("OwnerChar PTR : %p\n",&pOwner);
-				pOwner->SetChangeWaitState(1);
+				pOwner->SendChangeChar(iState);
 			}
-
-			//cout << GetBaseCharSize() << endl;
 		}
 
 		//if (InitMyInventoryData == false)
@@ -158,6 +158,19 @@ ioBaseChar* GameManager::GetOwnerChar()
 	{
 		ioBaseChar* pChar = GetBaseChar(i * 0x4);
 		if (pChar && pChar->IsOwnerChar())
+		{
+			return pChar;
+		}
+	}
+	return nullptr;
+}
+
+ioBaseChar* GameManager::GetBaseChar(const char* szName)
+{
+	for (int i = 0; i < 32; i++)
+	{
+		ioBaseChar* pChar = GetBaseChar(i * 0x4);
+		if (pChar && pChar->GetPublicID() == szName)
 		{
 			return pChar;
 		}

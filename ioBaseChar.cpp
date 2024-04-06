@@ -12,9 +12,6 @@ ioBaseChar::~ioBaseChar()
 
 }
 
-//int __stdcall func_hook_payload(int a, int b, int c, unsigned int d, signed int e);
-// int __usercall func<eax>(int a<eax>, int b<ecx>, int c, unsigned int d, signed int e);
-
 int(__stdcall* func_hook_payload)(int a, int b, int c, bool d, bool e) = reinterpret_cast<int(__stdcall*)(int a, int b, int c, bool d, bool e)>(0x17B16D0);
 __declspec(naked) void func_hook(int a, int b, int c, bool d, bool e)
 {
@@ -32,13 +29,17 @@ __declspec(naked) void func_hook(int a, int b, int c, bool d, bool e)
 	}
 }
 
-void ioBaseChar::SetChangeWaitState(int iArray, bool bSend)
+void ioBaseChar::SendChangeChar(int iArray, bool bSend)
 {
 
 	//func_hook((int)this, (int)this, iArray, bSend, false);
 
+	if (m_iSelectCharArray == iArray)
+	{
+		return;
+	}
 
-	int(__thiscall * sub_175C6D0)(int pThis, unsigned int) = reinterpret_cast<int(__thiscall*)(int , unsigned int)>(0x175C6D0);
+	int(__thiscall * sub_175C6D0)(int pThis, unsigned int) = reinterpret_cast<int(__thiscall*)(int , unsigned int)>(0x175C6D0); //void ioBaseChar::SendChangeChar(int iArray)
 	sub_175C6D0((int)this, iArray);
 	//ioBaseChar, ioGameEntity, 
 

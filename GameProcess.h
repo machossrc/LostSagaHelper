@@ -14,6 +14,7 @@ public:
 public:
 	ioBaseChar* GetBaseChar(int iOffset);
 	ioBaseChar* GetOwnerChar();
+	ioBaseChar* GetBaseChar(const char * szName);
 	int GetBaseCharSize();
 public:
 	static GameManager& GetSingleton();
