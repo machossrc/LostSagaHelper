@@ -133,7 +133,8 @@ public:
 	int GetState(); //¸ð¼Ç
 	ioHashString GetPublicID();
 
-	float GetSkillByIndex(int iIndex);
+	bool HasSkill(int iIndex);
+	float GetCurSkillByIndex(int iIndex);
 	float GetMaxSkillByIndex(int iIndex);
 	D3DXVECTOR3 GetPosition();
 

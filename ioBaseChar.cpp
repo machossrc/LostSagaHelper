@@ -22,7 +22,12 @@ ioHashString ioBaseChar::GetPublicID()
 	return m_szName;
 }
 
-float ioBaseChar::GetSkillByIndex(int iIndex)
+bool ioBaseChar::HasSkill(int iIndex)
+{
+	bool bHas = GetMaxSkillByIndex(iIndex) > 0 ? GetMaxSkillByIndex(iIndex) <= GetCurSkillByIndex(iIndex) : false;
+}
+
+float ioBaseChar::GetCurSkillByIndex(int iIndex)
 {
 	DWORD Buf = g_Memory.RPM<DWORD>((DWORD)&m_pEquipSlot);
 	Buf = g_Memory.RPM<DWORD>(Buf + iIndex * 0x4);

@@ -60,7 +60,7 @@ void GameManager::GameProcess()
 			ioBaseChar* pOwner = GetOwnerChar();
 			if (pOwner)
 			{
-				cout << "CurSkill : " << pOwner->GetSkillByIndex(EquipSlot::ES_WEAPON) << endl;
+				cout << "CurSkill : " << pOwner->GetCurSkillByIndex(EquipSlot::ES_WEAPON) << endl;
 				cout << "MaxSkill : " << pOwner->GetMaxSkillByIndex(EquipSlot::ES_WEAPON) << endl;
 			}
 		}
