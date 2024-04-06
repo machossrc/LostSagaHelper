@@ -59,20 +59,7 @@ void GameManager::GameProcess()
 
 	while (true)
 	{
-		/*cout << "바꿀 Char Index 을 입력하세요 : ";
-		int iState = 0;
-		cin >> iState;*/
-
-		/*ioBaseChar* pOwner = GetOwnerChar();
-		if (pOwner)
-		{
-			if (g_MyInfo.GetCharCount() >= iState)
-			{
-				pOwner->SendChangeChar(iState);
-			}
-		}*/
-
-		if (GetAsyncKeyState(VK_INSERT) & 1)
+		/*if (GetAsyncKeyState(VK_INSERT) & 1)
 		{
 			ioBaseChar* pOwner = GetOwnerChar();
 			if (pOwner)
@@ -80,68 +67,49 @@ void GameManager::GameProcess()
 				ioSkill* pSkill = pOwner->GetEquipedSkill(0);
 				if (pSkill)
 				{
-					printf("SkillPer : %p\n", pSkill);
 					printf("GroupName : %s\n", pSkill->m_GroupName.c_str());
 					printf("SkillName : %s\n", pSkill->m_Name.c_str());
-				}
+					printf("m_DescName : %s\n", pSkill->m_DescName.c_str());
 
-			}
-		}
-
-		/*for (int i = 0; i < 32; i++)
-		{
-			ioBaseChar* pChar = GetBaseChar(i * 0x4);
-			if (pChar && !pChar->IsOwnerChar() && pChar->GetState() == 7)
-			{
-				ioBaseChar* pOwner = GetOwnerChar();
-				if (pOwner)
-				{
-					pOwner->SendChangeChar(1);
-					Sleep(5000);
+					printf("SkillUseType : %d, PTR : %p\n",pSkill->m_SkillUseType, &pSkill->m_SkillUseType);
+					printf("SkillMotionName : %s, PTR : %p\n",pSkill->m_SkillMotionName.c_str(), &pSkill->m_SkillMotionName);
+					printf("AnimationTimeRate : %f, PTR : %p\n",pSkill->m_fAnimationTimeRate, &pSkill->m_fAnimationTimeRate);
+					printf("PreDelayAnimation : %s, PTR : %p\n",pSkill->m_PreDelayAnimation.c_str(), &pSkill->m_PreDelayAnimation);
+					printf("PreDelayOwnerEffect : %s, PTR : %p\n",pSkill->m_PreDelayOwnerEffect.c_str(), &pSkill->m_PreDelayOwnerEffect);
+					printf("DownSkillMotionName : %s, PTR : %p\n",pSkill->m_DownSkillMotionName.c_str(), &pSkill->m_DownSkillMotionName);
+					printf("IconName : %s, PTR : %p\n",pSkill->m_IconName.c_str(), &pSkill->m_IconName);
+					
+					printf("PreDelayStartTime : %d, PTR : %p\n",pSkill->m_dwPreDelayStartTime, &pSkill->m_dwPreDelayStartTime);
+					printf("m_dwMotionStartTime : %d, PTR : %p\n",pSkill->m_dwMotionStartTime, &pSkill->m_dwMotionStartTime);
+					
 				}
 			}
 		}*/
 
-		//if (InitMyInventoryData == false)
-		//{
-		//	continue;
-		//}
 
-		//ioBaseChar* pOwner = GetOwnerChar();
-		//if (pOwner)
-		//{
-		//	__try
-		//	{
-		//		if (pOwner->HasSkill(EquipSlot::ES_WEAPON)) printf("Has Weapon Skill\n");
-		//		if (pOwner->HasSkill(EquipSlot::ES_ARMOR)) printf("Has Armor Skill\n");
-		//		if (pOwner->HasSkill(EquipSlot::ES_HELMET)) printf("Has Helmet Skill\n");
-		//		if (pOwner->HasSkill(EquipSlot::ES_CLOAK)) printf("Has Cloak Skill\n");
-		//	}
-		//	__except (1) {}
-		//}
-
-
-		//for (int i = 0; i < 32; i++)
-		//{
-		//	ioBaseChar* pChar = GetBaseChar(i * 0x4);
-		//	if (!pChar) //pChar 가 없다면, 마지막 번호이므로 종료
-		//	{
-		//		break;
-		//	}
-
-		//	if (pChar->GetState() == 7) //스킬을 사용중이다
-		//	{
-		//		cout << pChar->GetPublicID().c_str() << " 님이 스킬을 사용함." << endl;
-		//		ioBaseChar* pOwner = GetOwnerChar();
-		//		if (pOwner)
-		//		{
-		//			char szBuf[MAX_PATH];
-		//			sprintf(szBuf, "내 스킬 게이지 : %f, %f, %f, %f", pOwner->GetSkillGauge(0), pOwner->GetSkillGauge(1), pOwner->GetSkillGauge(2), pOwner->GetSkillGauge(3));
-		//			cout << szBuf << endl;
-		//			//CHECK
-		//		}
-		//	}
-		//}
+		for (int i = 0; i < 32; i++)
+		{
+			ioBaseChar* pChar = GetBaseChar(i * 0x4);
+			if (pChar && pChar->GetState() == 7)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					ioSkill* pSkill = pChar->GetEquipedSkill(j);
+					if (pSkill && pSkill->IsSkillStart()) //스킬 시전중
+					{
+						if (pSkill->IsTimeGateWeaponSkill())
+						{
+							ioBaseChar* pOwner = GetOwnerChar();
+							if (pOwner)
+							{
+								pOwner->SendChangeChar(1);
+								Sleep(pSkill->GetSkillWaitTime());
+							}
+						}
+					}
+				}
+			}
+		}
 
 		Sleep(10);
 	}

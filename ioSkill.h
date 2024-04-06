@@ -92,20 +92,22 @@ public:
 	ioHashString m_CameraBuff;
 
 	// Normal
-	ioHashString m_SkillMotionName;
+	ioHashString m_SkillMotionName; //여긴 OK
 	float m_fAnimationTimeRate;
 
 	int  m_ProtectCancelType;
 	CEncrypt<bool> m_bDisableSkillProtect;
 	bool m_bPreDelayProtect;
-	ioHashString m_PreDelayAnimation;
+
+	ioHashString m_PreDelayAnimation; //여긴 OK
 	DWORD m_dwPreDelayTime;
+	char szUnknownBuffer[4]; //2024 추가
 
 	ioHashString m_PreDelayOwnerEffect;
 	ioHashString m_PreDelayOtherEffect;
 
 	// Down
-	ioHashString m_DownSkillMotionName;
+	ioHashString m_DownSkillMotionName; //여기 잘 못 가져옴
 	float m_fDownAnimationTimeRate;
 
 	bool m_bDownPreDelayProtect;
@@ -140,7 +142,11 @@ public:
 	DWORD m_dwPreDelayStartTime;
 	DWORD m_dwFireMotionEndTime;
 
-	ScreenBlindTime m_ScreenBlindTime;
+	//여기까진 OK
+
+	ScreenBlindTime m_ScreenBlindTime; //ok
+
+	//여기 뭐가 추가됨
 
 	bool m_bUseCustomBlind;
 	ScreenBlindSetting m_SkillBlind;
@@ -151,7 +157,7 @@ public:
 	DWORD m_dwCameraEvent;
 
 	void* m_pOwnerItem;
-	CEncrypt<DWORD> m_dwMotionStartTime;
+	CEncrypt<DWORD> m_dwMotionStartTime; //이거 못가져옴
 	DWORD m_dwMotionEndTime;
 	DWORD m_dwEnableReserveTime;
 
@@ -310,7 +316,7 @@ public:
 	// For Skill Cancel Skill
 	CEncrypt<bool> m_bEnableCancelBySkill;
 	CEncrypt<DWORD> m_dwEnableCancelBySkillTime;
-	CEncrypt<DWORD> m_dwSkillStartTime;
+	CEncrypt<DWORD> m_dwSkillStartTime; //이거 못가져온다.
 
 	// For ActiveCount
 	CEncrypt<int>  m_iMaxActiveCount;
@@ -334,5 +340,10 @@ public:
 	bool m_bNoCheckFallState;
 	bool m_bSwitchSkillEndJump;
 	bool m_bNoCheckSkillmotion;
+
+public:
+	bool IsSkillStart();
+	DWORD GetSkillWaitTime();
+	bool IsTimeGateWeaponSkill();
 };
 
