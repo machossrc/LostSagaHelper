@@ -24,7 +24,7 @@ ioHashString ioBaseChar::GetPublicID()
 
 bool ioBaseChar::HasSkill(int iIndex)
 {
-	bool bHas = GetMaxSkillByIndex(iIndex) > 0 ? GetMaxSkillByIndex(iIndex) <= GetCurSkillByIndex(iIndex) : false;
+	return GetMaxSkillByIndex(iIndex) > 0 ? GetMaxSkillByIndex(iIndex) <= GetCurSkillByIndex(iIndex) : false;
 }
 
 float ioBaseChar::GetCurSkillByIndex(int iIndex)

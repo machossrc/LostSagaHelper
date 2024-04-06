@@ -55,15 +55,26 @@ void GameManager::GameProcess()
 {
 	while (true)
 	{
-		if (GetAsyncKeyState(VK_INSERT) & 1)
+		//if (GetAsyncKeyState(VK_INSERT) & 1)
+		//{
+		//	ioBaseChar* pOwner = GetOwnerChar();
+		//	if (pOwner)
+		//	{
+		//		cout << "CurSkill : " << pOwner->GetCurSkillByIndex(EquipSlot::ES_WEAPON) << endl;
+		//		cout << "MaxSkill : " << pOwner->GetMaxSkillByIndex(EquipSlot::ES_WEAPON) << endl;
+		//	}
+		//}
+
+		ioBaseChar* pOwner = GetOwnerChar();
+		if (pOwner)
 		{
-			ioBaseChar* pOwner = GetOwnerChar();
-			if (pOwner)
-			{
-				cout << "CurSkill : " << pOwner->GetCurSkillByIndex(EquipSlot::ES_WEAPON) << endl;
-				cout << "MaxSkill : " << pOwner->GetMaxSkillByIndex(EquipSlot::ES_WEAPON) << endl;
-			}
+			if (pOwner->HasSkill(EquipSlot::ES_WEAPON)) printf("Has Weapon Skill");
+			if (pOwner->HasSkill(EquipSlot::ES_ARMOR)) printf("Has Armor Skill");
+			if (pOwner->HasSkill(EquipSlot::ES_HELMET)) printf("Has Helmet Skill");
+			if (pOwner->HasSkill(EquipSlot::ES_CLOAK)) printf("Has Cloak Skill");
+
 		}
+
 
 		//for (int i = 0; i < 32; i++)
 		//{
@@ -87,7 +98,7 @@ void GameManager::GameProcess()
 		//	}
 		//}
 
-		Sleep(10);
+		Sleep(100);
 	}
 }
 
