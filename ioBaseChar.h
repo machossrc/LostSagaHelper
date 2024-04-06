@@ -130,6 +130,10 @@ public:
 
 public:
 
+	//double __userpurge sub_17B16D0@<st0>(int a1@<ecx>, int a2@<edi>, double result@<st0>, int a4@<ebx>, unsigned int a5, char a6, char a7)
+
+	void SetChangeWaitState(int iArray, bool bSend = true);
+
 	int GetState(); //¸ð¼Ç
 	ioHashString GetPublicID();
 

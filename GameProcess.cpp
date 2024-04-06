@@ -53,30 +53,41 @@ bool GameManager::MemoryInit()
 
 void GameManager::GameProcess()
 {
+	bool InitMyInventoryData = false;
+
 	while (true)
 	{
-		//if (GetAsyncKeyState(VK_INSERT) & 1)
+		if (GetAsyncKeyState(VK_INSERT) & 1)
+		{
+			InitMyInventoryData = true;
+
+			ioBaseChar* pOwner = GetOwnerChar();
+			if (pOwner)
+			{
+				printf("OwnerChar PTR : %p\n",&pOwner);
+				pOwner->SetChangeWaitState(1);
+			}
+
+			//cout << GetBaseCharSize() << endl;
+		}
+
+		//if (InitMyInventoryData == false)
 		//{
-		//	ioBaseChar* pOwner = GetOwnerChar();
-		//	if (pOwner)
-		//	{
-		//		cout << "CurSkill : " << pOwner->GetCurSkillByIndex(EquipSlot::ES_WEAPON) << endl;
-		//		cout << "MaxSkill : " << pOwner->GetMaxSkillByIndex(EquipSlot::ES_WEAPON) << endl;
-		//	}
+		//	continue;
 		//}
 
-		ioBaseChar* pOwner = GetOwnerChar();
-		if (pOwner)
-		{
-			__try
-			{
-				if (pOwner->HasSkill(EquipSlot::ES_WEAPON)) printf("Has Weapon Skill\n");
-				if (pOwner->HasSkill(EquipSlot::ES_ARMOR)) printf("Has Armor Skill\n");
-				if (pOwner->HasSkill(EquipSlot::ES_HELMET)) printf("Has Helmet Skill\n");
-				if (pOwner->HasSkill(EquipSlot::ES_CLOAK)) printf("Has Cloak Skill\n");
-			}
-			__except (1) {}
-		}
+		//ioBaseChar* pOwner = GetOwnerChar();
+		//if (pOwner)
+		//{
+		//	__try
+		//	{
+		//		if (pOwner->HasSkill(EquipSlot::ES_WEAPON)) printf("Has Weapon Skill\n");
+		//		if (pOwner->HasSkill(EquipSlot::ES_ARMOR)) printf("Has Armor Skill\n");
+		//		if (pOwner->HasSkill(EquipSlot::ES_HELMET)) printf("Has Helmet Skill\n");
+		//		if (pOwner->HasSkill(EquipSlot::ES_CLOAK)) printf("Has Cloak Skill\n");
+		//	}
+		//	__except (1) {}
+		//}
 
 
 		//for (int i = 0; i < 32; i++)
