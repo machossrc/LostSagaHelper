@@ -28,7 +28,7 @@ void HeroSetting::LoadTimeGateToGhostArmor(INILoader& rkLoader)
 
 bool HeroSetting::IsTimeGateWeaponAttackMe(float fRange, float fHeight)
 {
-	if (fRange <= m_TimeGateToGhostArmor.fApplyRange && m_TimeGateToGhostArmor.fApplyUpHeight <= fHeight && m_TimeGateToGhostArmor.fApplyUnderHeight <= fHeight)
+	if (fRange <= m_TimeGateToGhostArmor.fApplyRange && fHeight <= m_TimeGateToGhostArmor.fApplyUpHeight && fHeight <= m_TimeGateToGhostArmor.fApplyUnderHeight)
 	{
 		return true;
 	}
