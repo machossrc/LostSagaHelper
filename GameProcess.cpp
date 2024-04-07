@@ -21,6 +21,14 @@ GameManager& GameManager::GetInstance()
 
 GameManager::GameManager()
 {
+	m_dwApp = 0;
+	m_dwMyInfo = 0;
+
+	m_dwSetSystemMsgFunc = 0;
+	m_dwSendToServerFunc = 0;
+	m_dwGetEquipedSkillFunc = 0;
+	m_dwGetCharCountFunc = 0;
+	m_dwGetClassArrayFunc = 0;
 }
 
 GameManager::~GameManager()
@@ -53,28 +61,46 @@ void GameManager::OnLoadINISetting()
 bool GameManager::MemoryInit()
 {
 	OnLoadINISetting();
-	//DWORD dwMemoryInitTime = GetTickCount();
-	//while (true)
-	//{
-	//	DWORD dwAddress = 0;
-	//	dwAddress = g_Memory.AobScan("8D 4E 20 88 5D FC E8 ?? ?? ?? ?? 89 1D ?? ?? ?? ?? 8B 4D F4 64 89 0D 00 00 00 00 59 5F 5E 5B", 0x01200000, 0x01500000) + 0xB;
-	//	string szOperand = g_Memory.GetOperand(dwAddress, 0);
-	//	m_dwApp = g_Memory.ParseOperand(szOperand);
 
-	//	if (m_dwApp != 0)
-	//	{
-	//		break;
-	//	}
+	DWORD dwMemoryInitTime = GetTickCount();
+	while (true)
+	{
+		DWORD dwAddress = 0;
+		dwAddress = g_Memory.AobScan("8D 4E 20 88 5D FC E8 ?? ?? ?? ?? 89 1D ?? ?? ?? ?? 8B 4D F4 64 89 0D 00 00 00 00 59 5F 5E 5B", 0x01200000, 0x01500000) + 0xB;
+		string szOperand = g_Memory.GetOperand(dwAddress, 0);
+		m_dwApp = g_Memory.ParseOperand(szOperand);
 
-	//	DWORD dwGapTime = GetTickCount() - dwMemoryInitTime;
-	//	if (dwGapTime > 10000) //10초이상 값을 못찾을 경우
-	//	{
-	//		dwMemoryInitTime = GetTickCount();
-	//		return false;
-	//	}
+		m_dwSetSystemMsgFunc = g_Memory.AobScan("55 8B EC 80 3D DD 54 80 02 00 75 6F 57 8B 7D 08 6A 02 8B CF E8 27 AD FF FF FF 15 A4 4C 41 02 84 C0 74 39 8B 4D 0C 56 8D 45 10 50 51 8D 77 3C 68 FF 03", 0x01D00000, 0x01E00000);
+		m_dwSendToServerFunc = g_Memory.AobScan("55 8B EC 8B 45 08 50 E8 74 32 3D FF 8B C8 E8 AD 38 3D FF 5D C3 CC CC CC CC CC CC CC CC CC CC CC 55 8B EC 8B 45 08 50 E8 54 32 3D FF 8B C8 E8 4D 21 40", 0x02070000, 0x02080000);
+		m_dwGetEquipedSkillFunc = g_Memory.AobScan("55 8B EC 8B 55 08 83 FA 08 77 1F 8B 81 94 00 00 00 80 B8 24 03 00 00 00 75 08 8B 44 91 48 85 C0 75 22 8B 44 91 24 5D C2 04 00 8B 0D 68 33 41 02 52 68", 0x01910000, 0x01920000);
 
-	//	Sleep(100);
-	//}
+		m_dwGetCharCountFunc = g_Memory.AobScan("8B 81 EC 00 00 00 8B 48 04 2B 08 B8 11 F0 FE 10 F7 E9 C1 FA 07 8B C2 C1 E8 1F 03 C2 C3 CC CC CC 55 8B EC 51 56 8D 45 FC 8B F1 8B 4D 08 50 C7 45 FC FF", 0x014E0000, 0x014F0000);
+		m_dwGetClassArrayFunc = g_Memory.AobScan("55 8B EC 51 53 56 57 8B F9 89 7D FC 33 DB E8 5D AC FF FF 85 C0 7E 5D 33 F6 EB 08 EB 03 8D 49 00 8B 7D FC 8B 87 EC 00 00 00 8B 08 8B 50 04 2B D1 B8 11", 0x014E0000, 0x014F0000);
+
+
+		if (m_dwApp != 0 && m_dwSetSystemMsgFunc != 0 && m_dwSendToServerFunc != 0 && m_dwGetEquipedSkillFunc != 0 && m_dwGetCharCountFunc != 0 && m_dwGetClassArrayFunc != 0)
+		{
+			m_dwMyInfo = m_dwApp + 0x3F0;
+			printf("AppBase : %p\n", (DWORD*)m_dwApp);
+			printf("MyInfoBase : %p\n", (DWORD*)m_dwMyInfo);
+			printf("SetSystemMsgFunc : %p\n", (DWORD*)m_dwSetSystemMsgFunc);
+			printf("SendToServerFunc : %p\n", (DWORD*)m_dwSendToServerFunc);
+			printf("GetEquipedSkillFunc : %p\n", (DWORD*)m_dwGetEquipedSkillFunc);
+			printf("GetCharCountFunc : %p\n", (DWORD*)m_dwGetCharCountFunc);
+			printf("GetEquipedSkillFunc : %p\n", (DWORD*)m_dwGetClassArrayFunc);
+			break;
+		}
+
+
+		DWORD dwGapTime = GetTickCount() - dwMemoryInitTime;
+		if (dwGapTime > 10000) //10초이상 값을 못찾을 경우
+		{
+			dwMemoryInitTime = GetTickCount();
+			return false;
+		}
+
+		Sleep(100);
+	}
 
 	return true;
 }
@@ -179,13 +205,13 @@ void GameManager::GameProcess()
 void GameManager::SetSystemMsg(const char* szSource, ...)
 {
 	DWORD buf = g_Memory.RPM<DWORD>(ChatBase);
-	void (*sub_1D789B0)(DWORD*, const char*, ...) = reinterpret_cast<void (*)(DWORD*, const char*, ...)>(0x1D789B0);
+	void (*sub_1D789B0)(DWORD*, const char*, ...) = reinterpret_cast<void (*)(DWORD*, const char*, ...)>(g_GameMgr.m_dwSetSystemMsgFunc); //55 8B EC 80 3D DD 54 80 02 00 75 6F 57 8B 7D 08 6A 02 8B CF E8 27 AD FF FF FF 15 A4 4C 41 02 84 C0 74 39 8B 4D 0C 56 8D 45 10 50 51 8D 77 3C 68 FF 03
 	sub_1D789B0((DWORD*)buf, szSource);
 }
 
 void GameManager::SendToServer(SP2Packet& rkPacket)
 {
-	void(__cdecl * sub_207E890)(SP2Packet& a1) = reinterpret_cast<void(__cdecl*)(SP2Packet & a1)>(0x207E890);
+	void(__cdecl * sub_207E890)(SP2Packet& a1) = reinterpret_cast<void(__cdecl*)(SP2Packet & a1)>(g_GameMgr.m_dwSendToServerFunc); //55 8B EC 8B 45 08 50 E8 74 32 3D FF 8B C8 E8 AD 38 3D FF 5D C3 CC CC CC CC CC CC CC CC CC CC CC 55 8B EC 8B 45 08 50 E8 54 32 3D FF 8B C8 E8 4D 21 40
 	sub_207E890(rkPacket);
 }
 
@@ -193,9 +219,9 @@ ioBaseChar* GameManager::GetBaseChar(int iOffset)
 {
 	DWORD c_C = NULL;
 
-	if (IsBadReadPtr((PDWORD)PlayerBase, DM_PROMPT) == NULL)
+	if (IsBadReadPtr((PDWORD)m_dwApp, DM_PROMPT) == NULL)
 	{
-		c_C = *(PDWORD)((DWORD)(PlayerBase)) + OFS_USERBASE_1;
+		c_C = *(PDWORD)((DWORD)(m_dwApp)) + OFS_USERBASE_1;
 		if (IsBadReadPtr((PDWORD)c_C, DM_PROMPT) == NULL)
 		{
 			c_C = *(PDWORD)((DWORD)(c_C)) + OFS_USERBASE_2;

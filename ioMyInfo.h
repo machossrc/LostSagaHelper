@@ -40,7 +40,6 @@ public:
 	int GetCharCount();
 
 	int GetClassArray(int iClassType);
-	//int GetCharIndex(int array);
 
 private:
 	static ioMyInfo* sg_Instance;

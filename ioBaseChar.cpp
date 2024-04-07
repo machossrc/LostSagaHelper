@@ -15,7 +15,7 @@ ioBaseChar::~ioBaseChar()
 
 }
 
-int(__stdcall* func_hook_payload)(int a, int b, int c, bool d, bool e) = reinterpret_cast<int(__stdcall*)(int a, int b, int c, bool d, bool e)>(0x17B16D0);
+int(__stdcall* func_hook_payload)(int a, int b, int c, bool d, bool e) = reinterpret_cast<int(__stdcall*)(int a, int b, int c, bool d, bool e)>(0x017B16D0);
 __declspec(naked) void func_hook(int a, int b, int c, bool d, bool e)
 {
 	__asm {
@@ -121,7 +121,7 @@ float ioBaseChar::GetPositionRange()
 
 ioSkill* ioBaseChar::GetEquipedSkill(int iSkillNum)
 {
-	ioSkill*(__thiscall * GetEquipedSkill)(DWORD * pThis, unsigned int) = reinterpret_cast<ioSkill*(__thiscall*)(DWORD * pThis, unsigned int)>(0x01913ED0);
+	ioSkill*(__thiscall * GetEquipedSkill)(DWORD * pThis, unsigned int) = reinterpret_cast<ioSkill*(__thiscall*)(DWORD * pThis, unsigned int)>(g_GameMgr.m_dwGetEquipedSkillFunc); //55 8B EC 8B 55 08 83 FA 08 77 1F 8B 81 94 00 00 00 80 B8 24 03 00 00 00 75 08 8B 44 91 48 85 C0 75 22 8B 44 91 24 5D C2 04 00 8B 0D 68 33 41 02 52 68
 	return GetEquipedSkill((DWORD*)this->m_pEquipSlot, iSkillNum);
 }
 

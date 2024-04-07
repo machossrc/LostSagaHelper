@@ -4,10 +4,14 @@ class ioBaseChar;
 
 class GameManager
 {
-private:
+public:
 	DWORD m_dwApp;
-
-
+	DWORD m_dwMyInfo;
+	DWORD m_dwSetSystemMsgFunc;
+	DWORD m_dwSendToServerFunc;
+	DWORD m_dwGetEquipedSkillFunc;
+	DWORD m_dwGetCharCountFunc;
+	DWORD m_dwGetClassArrayFunc;
 public:
 	void GetINIPath(char * szPath);
 
