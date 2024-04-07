@@ -142,6 +142,7 @@ void GameManager::GameProcess()
 					if (pSkill && pSkill->IsSkillStart()) //스킬 시전중
 					{
 						const DWORD TempWaitTime = pSkill->GetSkillWaitTime();
+
 						if (pSkill->IsTimeGateWeaponSkill())
 						{
 							printf("티메가테 무기스킬.\n");
@@ -153,10 +154,16 @@ void GameManager::GameProcess()
 							if (g_Setting.IsTimeGateWeaponAttackMe(fRange, fHeight))
 							{
 								printf("티메가테 무기스킬 좌표 체크 ok.\n");
-								pOwner->SendChangeChar(g_MyInfo.GetClassArray(g_Setting.GetTimeGateToGhostArmorClassType()));
+
+								int iClassArray = g_MyInfo.GetClassArray(g_Setting.GetTimeGateToGhostArmorClassType());
+								if (iClassArray != -1)
+								{
+									pOwner->SendChangeChar(iClassArray);
+								}
 							}
 							Sleep(TempWaitTime);
 						}
+						break;
 						/*else
 						{
 							SetSystemMsg("%s 스킬 사용.", pSkill->m_Name.c_str());
