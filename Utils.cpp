@@ -3,22 +3,13 @@
 
 using namespace std;
 
-template<> Utils* Singleton<Utils>::ms_Singleton = 0;
+Utils* Utils::sg_Instance = NULL;
 
-void Utils::OnConsole()
+Utils& Utils::GetInstance()
 {
-	if (AllocConsole())
-	{
-		freopen("CONIN$", "rb", stdin);
-		freopen("CONOUT$", "wb", stdout);
-		freopen("CONOUT$", "wb", stderr);
-		ios::sync_with_stdio();
-	}
-}
-
-Utils& Utils::GetSingleton()
-{
-	return Singleton<Utils>::GetSingleton();
+	if (sg_Instance == NULL)
+		sg_Instance = new Utils;
+	return *sg_Instance;
 }
 
 Utils::Utils()
@@ -29,4 +20,15 @@ Utils::Utils()
 Utils::~Utils()
 {
 
+}
+
+void Utils::OnConsole()
+{
+	if (AllocConsole())
+	{
+		freopen("CONIN$", "rb", stdin);
+		freopen("CONOUT$", "wb", stdout);
+		freopen("CONOUT$", "wb", stderr);
+		ios::sync_with_stdio();
+	}
 }

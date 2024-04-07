@@ -1,7 +1,6 @@
 #pragma once
-#include "Singleton.h"
 
-class CMemory : public Singleton<CMemory>
+class CMemory
 {
 public:
 	int ChartoAob(const char szArrays[], BYTE b[], BOOL m[]);
@@ -48,11 +47,14 @@ public:
 		__except (1) {}
 	}
 
+private:
+	static CMemory* sg_Instance;
 public:
-	static CMemory& GetSingleton();
+	static CMemory& GetInstance();
+
 public:
 	CMemory();
 	~CMemory();
 };
 
-#define g_Memory CMemory::GetSingleton()
+#define g_Memory CMemory::GetInstance()

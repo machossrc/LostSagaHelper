@@ -3,11 +3,14 @@
 #include "MemoryManager.h"
 #include "Offset.h"
 
-template<> ioMyInfo* Singleton<ioMyInfo>::ms_Singleton = 0;
+ioMyInfo* ioMyInfo::sg_Instance = NULL;
 
-ioMyInfo& ioMyInfo::GetSingleton()
+
+ioMyInfo& ioMyInfo::GetInstance()
 {
-	return Singleton<ioMyInfo>::GetSingleton();
+	if (sg_Instance == NULL)
+		sg_Instance = new ioMyInfo;
+	return *sg_Instance;
 }
 
 void ioMyInfo::InitMyInfo()
@@ -37,3 +40,17 @@ int ioMyInfo::GetCharCount()
 		return _GetCharCount((DWORD*)MyInfo);
 	}
 }
+
+int ioMyInfo::GetClassArray(int iClassType) // -1을 반환한다면
+{
+	DWORD MyInfo = g_Memory.RPM<DWORD>(MyInfoBase);
+	int(__thiscall * _GetClassArray)(DWORD * pThis, int) = reinterpret_cast<int(__thiscall*)(DWORD * pThis, int)>(0x14EE400);
+	return _GetClassArray((DWORD*)MyInfo, iClassType);
+}
+
+//int ioMyInfo::GetCharIndex(int array)
+//{
+//	DWORD MyInfo = g_Memory.RPM<DWORD>(MyInfoBase);
+//	int(__thiscall * _GetCharIndex)(DWORD * pThis, int) = reinterpret_cast<int(__thiscall*)(DWORD * pThis, int)>(0x14EE270);
+//	return _GetCharIndex((DWORD*)MyInfo, array);
+//}

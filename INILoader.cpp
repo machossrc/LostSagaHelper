@@ -1,4 +1,4 @@
-#include <Windows.h>
+#include "stdafx.h"
 #include "INILoader.h"
 #include <strsafe.h>
 

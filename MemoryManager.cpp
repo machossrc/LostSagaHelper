@@ -5,11 +5,13 @@
 #include <capstone/capstone.h>
 #include <TlHelp32.h>
 
-template<> CMemory* Singleton<CMemory>::ms_Singleton = 0;
+CMemory* CMemory::sg_Instance = NULL;
 
-CMemory& CMemory::GetSingleton()
+CMemory& CMemory::GetInstance()
 {
-    return Singleton<CMemory>::GetSingleton();
+    if (sg_Instance == NULL)
+        sg_Instance = new CMemory;
+    return *sg_Instance;
 }
 
 CMemory::CMemory()

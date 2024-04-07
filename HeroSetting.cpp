@@ -3,15 +3,18 @@
 
 using namespace std;
 
-template<> HeroSetting* Singleton<HeroSetting>::ms_Singleton = 0;
+HeroSetting* HeroSetting::sg_Instance = NULL;
 
-HeroSetting& HeroSetting::GetSingleton()
+HeroSetting& HeroSetting::GetInstance()
 {
-	return Singleton<HeroSetting>::GetSingleton();
+	if (sg_Instance == NULL)
+		sg_Instance = new HeroSetting;
+	return *sg_Instance;
 }
 
 HeroSetting::HeroSetting()
 {
+	//m_iTimeGateToGhostArmorClassType = 0;
 }
 
 HeroSetting::~HeroSetting()
@@ -20,10 +23,12 @@ HeroSetting::~HeroSetting()
 
 void HeroSetting::LoadTimeGateToGhostArmor(INILoader& rkLoader)
 {
-	m_TimeGateToGhostArmor.iClassType = rkLoader.LoadInt("ClassType", 0);
-	m_TimeGateToGhostArmor.fApplyRange = rkLoader.LoadFloat("ApplyRange", 350.0f);
-	m_TimeGateToGhostArmor.fApplyUpHeight = rkLoader.LoadFloat("ApplyUpHeight", 150.0f);
-	m_TimeGateToGhostArmor.fApplyUnderHeight = rkLoader.LoadFloat("ApplyUnderHeight", 150.0f);
+	rkLoader.SetTitle("TimeGateToGhostArmor");
+
+	m_iTimeGateToGhostArmorClassType = rkLoader.LoadInt("ClassType", 0);
+
+	printf("TimeGateToGhostArmorClassType : %d\n", m_iTimeGateToGhostArmorClassType);
+	
 }
 
 bool HeroSetting::IsTimeGateWeaponAttackMe(float fRange, float fHeight)

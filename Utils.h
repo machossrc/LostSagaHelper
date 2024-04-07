@@ -1,15 +1,17 @@
 #pragma once
-#include "Singleton.h"
-class Utils : public Singleton<Utils>
+class Utils
 {
 public:
 	void OnConsole();
 
+private:
+	static Utils* sg_Instance;
 public:
-	static Utils& GetSingleton();
+	static Utils& GetInstance();
+
 public:
 	Utils();
 	virtual ~Utils();
 };
 
-#define g_Utils Utils::GetSingleton()
+#define g_Utils Utils::GetInstance()

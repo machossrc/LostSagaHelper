@@ -1,40 +1,25 @@
 #pragma once
-#include "Singleton.h"
 #include "INILoader.h"
 
-class HeroSetting : public Singleton<HeroSetting>
+class HeroSetting
 {
 private:
-	struct sTimeGateToGhostArmor
-	{
-		int iClassType; //해당 장비를 가지고있는 캐릭터
-		float fApplyRange;
-		float fApplyUpHeight;
-		float fApplyUnderHeight;
-		
-		
-		sTimeGateToGhostArmor()
-		{
-			iClassType = 0;
-
-			fApplyRange = 350.0f;
-			fApplyUpHeight = 150.0f;
-			fApplyUnderHeight = 150.0f;
-		}
-	};
-	sTimeGateToGhostArmor m_TimeGateToGhostArmor;
-
-
+	int m_iTimeGateToGhostArmorClassType;
 
 public:
 	void LoadTimeGateToGhostArmor(INILoader &rkLoader);
+
+	inline int GetTimeGateToGhostArmorClassType() { return m_iTimeGateToGhostArmorClassType; };
 	bool IsTimeGateWeaponAttackMe(float fRange, float fHeight);
 
+private:
+	static HeroSetting* sg_Instance;
 public:
-	static HeroSetting& GetSingleton();
+	static HeroSetting& GetInstance();
+
 public:
 	HeroSetting();
 	~HeroSetting();
 };
 
-#define g_Setting HeroSetting::GetSingleton()
+#define g_Setting HeroSetting::GetInstance()

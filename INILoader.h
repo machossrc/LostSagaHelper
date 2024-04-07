@@ -1,7 +1,7 @@
 
 
-#ifndef _INILoader_h_
-#define _INILoader_h_
+#ifndef _ioINILoader_h_
+#define _ioINILoader_h_
 
 class INILoader
 {

@@ -10,16 +10,17 @@
 
 using namespace std;
 
-template<> GameManager* Singleton<GameManager>::ms_Singleton = 0;
+GameManager* GameManager::sg_Instance = NULL;
 
-GameManager& GameManager::GetSingleton()
+GameManager& GameManager::GetInstance()
 {
-	return Singleton<GameManager>::GetSingleton();
+	if (sg_Instance == NULL)
+		sg_Instance = new GameManager;
+	return *sg_Instance;
 }
 
 GameManager::GameManager()
 {
-
 }
 
 GameManager::~GameManager()
@@ -31,7 +32,7 @@ void GameManager::GetINIPath(char* szPath)
 {
 	char szBuf[MAX_PATH];
 	SHGetFolderPathA(NULL, CSIDL_PERSONAL, NULL, 0, szBuf);
-	strcat(szBuf, "\\GAME.ini");
+	strcat(szBuf, "\\LSHelper.ini");
 	strcpy(szPath, szBuf);
 }
 
@@ -39,6 +40,8 @@ void GameManager::OnLoadINISetting()
 {
 	char szPath[MAX_PATH];
 	GetINIPath(szPath);
+
+	//cout << "INIPath : " << szPath << endl;
 
 	INILoader kLoader(szPath);
 	kLoader.SetTitle("TimeGateToGhostArmor");
@@ -49,7 +52,7 @@ void GameManager::OnLoadINISetting()
 
 bool GameManager::MemoryInit()
 {
-	//OnLoadINISetting();
+	OnLoadINISetting();
 	//DWORD dwMemoryInitTime = GetTickCount();
 	//while (true)
 	//{
@@ -114,6 +117,11 @@ void GameManager::GameProcess()
 		if (GetAsyncKeyState(VK_INSERT) & 1)
 		{
 			OnLoadINISetting();
+
+			//cout << g_MyInfo.GetClassArray(6) << endl;
+			//cout << g_MyInfo.GetClassArray(162) << endl;
+
+			//cout << "6 : " << g_MyInfo.GetCharIndex(g_MyInfo.GetClassArray(6)) << endl;
 		}
 
 
@@ -145,15 +153,15 @@ void GameManager::GameProcess()
 							if (g_Setting.IsTimeGateWeaponAttackMe(fRange, fHeight))
 							{
 								printf("티메가테 무기스킬 좌표 체크 ok.\n");
-								pOwner->SendChangeChar(1);
+								pOwner->SendChangeChar(g_MyInfo.GetClassArray(g_Setting.GetTimeGateToGhostArmorClassType()));
 							}
 							Sleep(TempWaitTime);
 						}
-						else
+						/*else
 						{
 							SetSystemMsg("%s 스킬 사용.", pSkill->m_Name.c_str());
 							Sleep(TempWaitTime);
-						}
+						}*/
 					}
 				}
 			}

@@ -95,9 +95,6 @@
     <ClInclude Include="Utils.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="MemoryManager.h">
       <Filter>Utils\Memory</Filter>
     </ClInclude>

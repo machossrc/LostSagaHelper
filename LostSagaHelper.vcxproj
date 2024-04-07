@@ -176,7 +176,6 @@
     <ClInclude Include="ioSkill.h" />
     <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="Offset.h" />
-    <ClInclude Include="Singleton.h" />
     <ClInclude Include="SP2Packet.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="Utils.h" />

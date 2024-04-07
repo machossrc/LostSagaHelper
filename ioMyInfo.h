@@ -1,8 +1,7 @@
 #pragma once
-#include "Singleton.h"
 #include "ioHashString.h"
 
-class ioMyInfo : public Singleton<ioMyInfo>
+class ioMyInfo
 {
 public:
 	//DWORD m_user_idx;
@@ -39,12 +38,18 @@ public:
 	//int m_iBonusCash;
 public:
 	int GetCharCount();
+
+	int GetClassArray(int iClassType);
+	//int GetCharIndex(int array);
+
+private:
+	static ioMyInfo* sg_Instance;
 public:
-	static ioMyInfo& GetSingleton();
+	static ioMyInfo& GetInstance();
 public:
 	void InitMyInfo();
 	ioMyInfo();
 	~ioMyInfo();
 };
 
-#define g_MyInfo ioMyInfo::GetSingleton()
+#define g_MyInfo ioMyInfo::GetInstance()
