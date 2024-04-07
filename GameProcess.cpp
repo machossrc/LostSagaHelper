@@ -188,6 +188,7 @@ void GameManager::GameProcess()
 							}
 							Sleep(TempWaitTime);
 						}
+						break;
 						/*else
 						{
 							SetSystemMsg("%s 스킬 사용.", pSkill->m_Name.c_str());
