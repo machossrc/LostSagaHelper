@@ -150,6 +150,8 @@
     <ClCompile Include="ccddaabb.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="GameProcess.cpp" />
+    <ClCompile Include="HeroSetting.cpp" />
+    <ClCompile Include="INILoader.cpp" />
     <ClCompile Include="ioBaseChar.cpp" />
     <ClCompile Include="ioHashString.cpp" />
     <ClCompile Include="ioMyInfo.cpp" />
@@ -163,6 +165,8 @@
     <ClInclude Include="CharacterInfo.h" />
     <ClInclude Include="EncryptValue.h" />
     <ClInclude Include="GameProcess.h" />
+    <ClInclude Include="HeroSetting.h" />
+    <ClInclude Include="INILoader.h" />
     <ClInclude Include="ioBaseChar.h" />
     <ClInclude Include="ioHashString.h" />
     <ClInclude Include="ioMyInfo.h" />

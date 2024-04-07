@@ -7,12 +7,15 @@ class GameManager : public Singleton<GameManager>
 private:
 	DWORD m_dwApp;
 public:
+	void GetINIPath(char * szPath);
+
+	void OnLoadINISetting();
+
 	bool MemoryInit();
 
 	void GameProcess();
 
 public:
-
 
 	ioBaseChar* GetBaseChar(int iOffset);
 	ioBaseChar* GetOwnerChar();

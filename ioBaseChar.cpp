@@ -91,6 +91,20 @@ D3DXVECTOR3 ioBaseChar::GetPosition()
 	return k;
 }
 
+float ioBaseChar::GetPositionHeight()
+{
+	DWORD Buf = g_Memory.RPM<DWORD>((DWORD)&m_pPosition);
+	Buf = g_Memory.RPM<DWORD>(Buf + 0x8);
+	return g_Memory.RPM<float>(Buf + 0x40);
+}
+
+float ioBaseChar::GetPositionRange()
+{
+	DWORD Buf = g_Memory.RPM<DWORD>((DWORD)&m_pPosition);
+	Buf = g_Memory.RPM<DWORD>(Buf + 0x8);
+	return g_Memory.RPM<float>(Buf + 0x40);
+}
+
 ioSkill* ioBaseChar::GetEquipedSkill(int iSkillNum)
 {
 	ioSkill*(__thiscall * GetEquipedSkill)(DWORD * pThis, unsigned int) = reinterpret_cast<ioSkill*(__thiscall*)(DWORD * pThis, unsigned int)>(0x01913ED0);
@@ -105,4 +119,20 @@ bool ioBaseChar::IsOwnerChar() const
 int ioBaseChar::GetTeam() const
 {
 	return m_iTeam;
+}
+
+float ioBaseChar::GetHeightDiff(ioBaseChar* pChar)
+{
+	return abs(this->GetPositionHeight() - pChar->GetPositionHeight());
+}
+
+float ioBaseChar::GetRangeDiff(ioBaseChar* pChar)
+{
+	D3DXVECTOR3 kMyPos = this->GetPosition();
+	D3DXVECTOR3 kEnemyPos = pChar->GetPosition();
+
+	float fDistX = kMyPos.x - kEnemyPos.x;
+	float fDistZ = kMyPos.z - kEnemyPos.z;
+
+	return sqrt(fDistX * fDistX + fDistZ * fDistZ);
 }

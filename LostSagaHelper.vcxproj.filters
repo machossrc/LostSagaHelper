@@ -22,14 +22,17 @@
     <Filter Include="Game\Data">
       <UniqueIdentifier>{f12baafe-26b6-4577-ae49-2aea15401eff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Hero">
-      <UniqueIdentifier>{6e67c974-fabe-41a4-8b82-1ac68cb9794d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{b6793762-1b22-401e-bd13-613592b09ff6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Utils\Memory">
       <UniqueIdentifier>{d999c732-3ca1-45cc-8f01-96bb5f440466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\INI">
+      <UniqueIdentifier>{30bc9a39-746f-44fc-9900-0dc5368ceaab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Setting">
+      <UniqueIdentifier>{6e67c974-fabe-41a4-8b82-1ac68cb9794d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +65,12 @@
     </ClCompile>
     <ClCompile Include="ioPlayStage.cpp">
       <Filter>Game\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="INILoader.cpp">
+      <Filter>Utils\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="HeroSetting.cpp">
+      <Filter>Game\Setting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="ioPlayStage.h">
       <Filter>Game\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="INILoader.h">
+      <Filter>Utils\INI</Filter>
+    </ClInclude>
+    <ClInclude Include="HeroSetting.h">
+      <Filter>Game\Setting</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

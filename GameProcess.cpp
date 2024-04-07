@@ -5,6 +5,8 @@
 #include "ioMyInfo.h"
 #include "ioSkill.h"
 #include "Offset.h"
+#include "HeroSetting.h"
+#include <ShlObj.h>
 
 using namespace std;
 
@@ -23,6 +25,26 @@ GameManager::GameManager()
 GameManager::~GameManager()
 {
 
+}
+
+void GameManager::GetINIPath(char* szPath)
+{
+	char szBuf[MAX_PATH];
+	SHGetFolderPathA(NULL, CSIDL_PERSONAL, NULL, 0, szBuf);
+	strcat(szBuf, "\\GAME.ini");
+	strcpy(szPath, szBuf);
+}
+
+void GameManager::OnLoadINISetting()
+{
+	char szPath[MAX_PATH];
+	GetINIPath(szPath);
+
+	INILoader kLoader(szPath);
+	kLoader.SetTitle("TimeGateToGhostArmor");
+	g_Setting.LoadTimeGateToGhostArmor(kLoader);
+
+	//더 추가
 }
 
 bool GameManager::MemoryInit()
@@ -89,6 +111,12 @@ void GameManager::GameProcess()
 			}
 		}*/
 
+		if (GetAsyncKeyState(VK_INSERT) & 1)
+		{
+
+		}
+
+
 		ioBaseChar* pOwner = GetOwnerChar();
 		if (!pOwner)
 		{
@@ -107,9 +135,14 @@ void GameManager::GameProcess()
 					{
 						if (pSkill->IsTimeGateWeaponSkill())
 						{
-							printf("티메가테 무기스킬.\n");
-							//pOwner->SendChangeChar(1);
-							Sleep(pSkill->GetSkillWaitTime());
+							float fRange = pOwner->GetRangeDiff(pChar);
+							float fHeight = pOwner->GetHeightDiff(pChar);
+							if (g_Setting.IsTimeGateWeaponAttackMe(fRange, fHeight))
+							{
+								printf("티메가테 무기스킬.\n");
+								pOwner->SendChangeChar(1);
+								Sleep(pSkill->GetSkillWaitTime());
+							}
 						}
 					}
 				}

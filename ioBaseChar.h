@@ -150,12 +150,17 @@ public:
 	float GetCurSkillByIndex(int iIndex);
 	float GetMaxSkillByIndex(int iIndex);
 	D3DXVECTOR3 GetPosition();
+	float GetPositionHeight();
+	float GetPositionRange();
 
 	ioSkill* GetEquipedSkill(int iSkillNum);
 
 	bool IsOwnerChar() const;
 
 	int GetTeam() const;
+
+	float GetHeightDiff(ioBaseChar *pChar);
+	float GetRangeDiff(ioBaseChar *pChar);
 
 	//float GetSkillGauge(int iState);
 
