@@ -81,13 +81,13 @@ bool GameManager::MemoryInit()
 		if (m_dwApp != 0 && m_dwSetSystemMsgFunc != 0 && m_dwSendToServerFunc != 0 && m_dwGetEquipedSkillFunc != 0 && m_dwGetCharCountFunc != 0 && m_dwGetClassArrayFunc != 0)
 		{
 			m_dwMyInfo = m_dwApp + 0x3F0;
-			printf("AppBase : %p\n", m_dwApp);
-			printf("MyInfoBase : %p\n", m_dwMyInfo);
-			printf("SetSystemMsgFunc : %p\n", m_dwSetSystemMsgFunc);
-			printf("SendToServerFunc : %p\n", m_dwSendToServerFunc);
-			printf("GetEquipedSkillFunc : %p\n", m_dwGetEquipedSkillFunc);
-			printf("GetCharCountFunc : %p\n", m_dwGetCharCountFunc);
-			printf("GetEquipedSkillFunc : %p\n", m_dwGetClassArrayFunc);
+			printf("AppBase : %p\n", (DWORD*)m_dwApp);
+			printf("MyInfoBase : %p\n", (DWORD*)m_dwMyInfo);
+			printf("SetSystemMsgFunc : %p\n", (DWORD*)m_dwSetSystemMsgFunc);
+			printf("SendToServerFunc : %p\n", (DWORD*)m_dwSendToServerFunc);
+			printf("GetEquipedSkillFunc : %p\n", (DWORD*)m_dwGetEquipedSkillFunc);
+			printf("GetCharCountFunc : %p\n", (DWORD*)m_dwGetCharCountFunc);
+			printf("GetEquipedSkillFunc : %p\n", (DWORD*)m_dwGetClassArrayFunc);
 			break;
 		}
 
