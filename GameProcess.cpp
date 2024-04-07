@@ -217,9 +217,9 @@ ioBaseChar* GameManager::GetBaseChar(int iOffset)
 {
 	DWORD c_C = NULL;
 
-	if (IsBadReadPtr((PDWORD)PlayerBase, DM_PROMPT) == NULL)
+	if (IsBadReadPtr((PDWORD)m_dwApp, DM_PROMPT) == NULL)
 	{
-		c_C = *(PDWORD)((DWORD)(PlayerBase)) + OFS_USERBASE_1;
+		c_C = *(PDWORD)((DWORD)(m_dwApp)) + OFS_USERBASE_1;
 		if (IsBadReadPtr((PDWORD)c_C, DM_PROMPT) == NULL)
 		{
 			c_C = *(PDWORD)((DWORD)(c_C)) + OFS_USERBASE_2;
