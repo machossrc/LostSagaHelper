@@ -153,7 +153,12 @@ void GameManager::GameProcess()
 							if (g_Setting.IsTimeGateWeaponAttackMe(fRange, fHeight))
 							{
 								printf("티메가테 무기스킬 좌표 체크 ok.\n");
-								pOwner->SendChangeChar(g_MyInfo.GetClassArray(g_Setting.GetTimeGateToGhostArmorClassType()));
+
+								int iClassArray = g_MyInfo.GetClassArray(g_Setting.GetTimeGateToGhostArmorClassType());
+								if (iClassArray != -1)
+								{
+									pOwner->SendChangeChar(iClassArray);
+								}
 							}
 							Sleep(TempWaitTime);
 						}
