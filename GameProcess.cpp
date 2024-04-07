@@ -49,7 +49,7 @@ void GameManager::OnLoadINISetting()
 
 bool GameManager::MemoryInit()
 {
-
+	//OnLoadINISetting();
 	//DWORD dwMemoryInitTime = GetTickCount();
 	//while (true)
 	//{
@@ -113,7 +113,7 @@ void GameManager::GameProcess()
 
 		if (GetAsyncKeyState(VK_INSERT) & 1)
 		{
-
+			OnLoadINISetting();
 		}
 
 
@@ -133,16 +133,21 @@ void GameManager::GameProcess()
 					ioSkill* pSkill = pChar->GetEquipedSkill(j);
 					if (pSkill && pSkill->IsSkillStart()) //스킬 시전중
 					{
+						const DWORD TempWaitTime = pSkill->GetSkillWaitTime();
 						if (pSkill->IsTimeGateWeaponSkill())
 						{
+							printf("티메가테 무기스킬.\n");
 							float fRange = pOwner->GetRangeDiff(pChar);
 							float fHeight = pOwner->GetHeightDiff(pChar);
+
+							printf("Range : %f, Height : %f\n",fRange,fHeight);
+
 							if (g_Setting.IsTimeGateWeaponAttackMe(fRange, fHeight))
 							{
-								printf("티메가테 무기스킬.\n");
-								pOwner->SendChangeChar(1);
-								Sleep(pSkill->GetSkillWaitTime());
+								printf("티메가테 무기스킬 좌표 체크 ok.\n");
+								//pOwner->SendChangeChar(1);
 							}
+							Sleep(TempWaitTime);
 						}
 					}
 				}
