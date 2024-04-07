@@ -34,6 +34,9 @@
     <Filter Include="Game\Setting">
       <UniqueIdentifier>{6e67c974-fabe-41a4-8b82-1ac68cb9794d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils\Packet">
+      <UniqueIdentifier>{8710e8f6-2294-4504-9933-01141628102e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -71,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="HeroSetting.cpp">
       <Filter>Game\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="SP2Packet.cpp">
+      <Filter>Utils\Packet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="HeroSetting.h">
       <Filter>Game\Setting</Filter>
+    </ClInclude>
+    <ClInclude Include="CPacket.h">
+      <Filter>Utils\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="SP2Packet.h">
+      <Filter>Utils\Packet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

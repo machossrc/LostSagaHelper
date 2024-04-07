@@ -137,16 +137,21 @@ void GameManager::GameProcess()
 						if (pSkill->IsTimeGateWeaponSkill())
 						{
 							printf("티메가테 무기스킬.\n");
-							float fRange = pOwner->GetRangeDiff(pChar);
-							float fHeight = pOwner->GetHeightDiff(pChar);
+							const float fRange = pOwner->GetRangeDiff(pChar);
+							const float fHeight = pOwner->GetHeightDiff(pChar);
 
 							printf("Range : %f, Height : %f\n",fRange,fHeight);
 
 							if (g_Setting.IsTimeGateWeaponAttackMe(fRange, fHeight))
 							{
 								printf("티메가테 무기스킬 좌표 체크 ok.\n");
-								//pOwner->SendChangeChar(1);
+								pOwner->SendChangeChar(1);
 							}
+							Sleep(TempWaitTime);
+						}
+						else
+						{
+							SetSystemMsg("%s 스킬 사용.", pSkill->m_Name.c_str());
 							Sleep(TempWaitTime);
 						}
 					}
@@ -154,6 +159,19 @@ void GameManager::GameProcess()
 			}
 		}
 	}
+}
+
+void GameManager::SetSystemMsg(const char* szSource, ...)
+{
+	DWORD buf = g_Memory.RPM<DWORD>(ChatBase);
+	void (*sub_1D789B0)(DWORD*, const char*, ...) = reinterpret_cast<void (*)(DWORD*, const char*, ...)>(0x1D789B0);
+	sub_1D789B0((DWORD*)buf, szSource);
+}
+
+void GameManager::SendToServer(SP2Packet& rkPacket)
+{
+	void(__cdecl * sub_207E890)(SP2Packet& a1) = reinterpret_cast<void(__cdecl*)(SP2Packet & a1)>(0x207E890);
+	sub_207E890(rkPacket);
 }
 
 ioBaseChar* GameManager::GetBaseChar(int iOffset)

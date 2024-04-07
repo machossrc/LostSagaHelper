@@ -2,6 +2,8 @@
 #include "ioBaseChar.h"
 #include "MemoryManager.h"
 #include "ioSkill.h"
+#include "SP2Packet.h"
+#include "GameProcess.h"
 
 ioBaseChar::ioBaseChar()
 {
@@ -40,8 +42,20 @@ void ioBaseChar::SendChangeChar(int iArray, bool bSend)
 		return;
 	}
 
-	int(__thiscall * sub_175C6D0)(int pThis, unsigned int) = reinterpret_cast<int(__thiscall*)(int , unsigned int)>(0x175C6D0); //void ioBaseChar::SendChangeChar(int iArray)
-	sub_175C6D0((int)this, iArray);
+	//int(__thiscall * sub_175C6D0)(int pThis, unsigned int) = reinterpret_cast<int(__thiscall*)(int , unsigned int)>(0x175C6D0); //void ioBaseChar::SendChangeChar(int iArray)
+	//sub_175C6D0((int)this, iArray);
+	//Oridinal Use  IT
+
+	SP2Packet kPacket(0x0017);
+	kPacket << iArray;
+	kPacket << true;
+	kPacket << GetCharChangeUniqueIndex() + 1;
+	g_GameMgr.SendToServer(kPacket);
+
+
+
+
+
 	//ioBaseChar, ioGameEntity, 
 
 

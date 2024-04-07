@@ -345,5 +345,6 @@ public:
 	bool IsSkillStart();
 	DWORD GetSkillWaitTime();
 	bool IsTimeGateWeaponSkill();
+	bool IsBrujoHelmetSkill(); //요술사 서클릿
 };
 

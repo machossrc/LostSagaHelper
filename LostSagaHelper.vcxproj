@@ -158,11 +158,13 @@
     <ClCompile Include="ioPlayStage.cpp" />
     <ClCompile Include="ioSkill.cpp" />
     <ClCompile Include="MemoryManager.cpp" />
+    <ClCompile Include="SP2Packet.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ccddaabb.h" />
     <ClInclude Include="CharacterInfo.h" />
+    <ClInclude Include="CPacket.h" />
     <ClInclude Include="EncryptValue.h" />
     <ClInclude Include="GameProcess.h" />
     <ClInclude Include="HeroSetting.h" />
@@ -175,6 +177,7 @@
     <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="Offset.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SP2Packet.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>

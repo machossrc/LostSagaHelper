@@ -25,3 +25,12 @@ bool ioSkill::IsTimeGateWeaponSkill()
 	}
 	return false;
 }
+
+bool ioSkill::IsBrujoHelmetSkill()
+{
+	if (this->m_Name == "055ES_brujo_ad_powerup_02") //±Ã±ØÁøÈ­
+	{
+		return true;
+	}
+	return false;
+}

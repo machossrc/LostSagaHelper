@@ -136,6 +136,9 @@ public:
 	int m_iLastAttackerTeam;
 	DWORD m_dwLastAttackerItemCode;
 
+	char szBuffer8[9888];
+	//15660
+	DWORD m_dwCharChangeIndex;
 public:
 
 	//double __userpurge sub_17B16D0@<st0>(int a1@<ecx>, int a2@<edi>, double result@<st0>, int a4@<ebx>, unsigned int a5, char a6, char a7)
@@ -162,6 +165,8 @@ public:
 	float GetHeightDiff(ioBaseChar *pChar);
 	float GetRangeDiff(ioBaseChar *pChar);
 
+	inline DWORD GetCharChangeUniqueIndex() { return m_dwCharChangeIndex; }
+	inline void  SetCharChangeUniqueIndex(DWORD dwIndex) { m_dwCharChangeIndex = dwIndex; }
 	//float GetSkillGauge(int iState);
 
 public:

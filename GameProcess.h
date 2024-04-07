@@ -1,5 +1,6 @@
 #pragma once
 #include "Singleton.h"
+#include "SP2Packet.h"
 class ioBaseChar;
 
 class GameManager : public Singleton<GameManager>
@@ -15,8 +16,11 @@ public:
 
 	void GameProcess();
 
-public:
 
+
+public:
+	void SetSystemMsg(const char* szSource, ...);
+	void SendToServer(SP2Packet& rkPacket);
 	ioBaseChar* GetBaseChar(int iOffset);
 	ioBaseChar* GetOwnerChar();
 	ioBaseChar* GetBaseChar(const char * szName);
